@@ -1,71 +1,90 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const AddFilm = () => {
-  // Define state variables for form fields
-  const [titre, setTitre] = useState("");
-  const [duree, setDuree] = useState("");
-  const [genre, setGenre] = useState("");
-  const [prix, setPrix] = useState(""); // Price state
-  const [imageFile, setImageFile] = useState(null);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+const AddSeance = () => {
+  // State for the form
+  const [heureDebut, setHeureDebut] = useState('');
+  const [heureFin, setHeureFin] = useState('');
+  const [filmId, setFilmId] = useState('');
+  const [salleId, setSalleId] = useState('');
+  const [date, setDate] = useState('');
 
-  // Handle form submission
+  // State for managing films and salles
+  const [films, setFilms] = useState([]);
+  const [salles, setSalles] = useState([]);
+
+  // State for success and error messages
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  // Fetch films and salles from the API
+  useEffect(() => {
+    const fetchFilms = async () => {
+      try {
+        const response = await axios.get('http://localhost:8090/films');
+        setFilms(response.data);
+      } catch (error) {
+        console.error('Error fetching films:', error);
+        setErrorMessage('Failed to fetch films.');
+      }
+    };
+
+    const fetchSalles = async () => {
+      try {
+        const response = await axios.get('http://localhost:8090/salles');
+        setSalles(response.data);
+      } catch (error) {
+        console.error('Error fetching salles:', error);
+        setErrorMessage('Failed to fetch salles.');
+      }
+    };
+
+    fetchFilms();
+    fetchSalles();
+  }, []);
+
+  // Form submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Convert duration and price to numbers
-    const dureeLong = parseInt(duree, 10);
-    const prixDecimal = parseFloat(prix);
-
-    // Validation checks for duration and price
-    if (isNaN(dureeLong) || dureeLong <= 0) {
-      alert("La durée doit être un nombre entier positif.");
-      return;
-    }
-
-    if (isNaN(prixDecimal) || prixDecimal <= 0) {
-      alert("Le prix doit être un nombre positif.");
-      return;
-    }
-
-    // Prepare form data to be sent to the backend
-    const formData = new FormData();
-    formData.append(
-      "film",
-      JSON.stringify({
-        titre,
-        duree: dureeLong,
-        genre,
-        prix: prixDecimal,
-      })
-    );
-    formData.append("file", imageFile);
+    // Create the seance object to send
+    const seance = {
+      heureDebut,
+      heureFin,
+      film: { id: filmId },
+      salle: { id: salleId },
+      date,
+    };
 
     try {
-      // Send data to the backend using axios
-      const response = await axios.post("http://localhost:8090/addfilm", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post('http://localhost:8090/AddSeance', seance);
+      console.log('Seance successfully added:', response.data);
 
-      // Set success message if film was added successfully
-      setSuccessMessage("Film ajouté avec succès !");
-      setErrorMessage(""); // Reset error message
-      console.log("Film ajouté avec succès", response.data);
+      // Show success message
+      setSuccessMessage('Séance ajoutée avec succès !');
+      setErrorMessage('');
+
+      // Reset form fields
+      setHeureDebut('');
+      setHeureFin('');
+      setFilmId('');
+      setSalleId('');
+      setDate('');
+
+      // Hide the success message after 5 seconds
+      setTimeout(() => {
+        setSuccessMessage('');
+      }, 5000);
     } catch (error) {
-      // Handle errors and show error message
-      setErrorMessage("Erreur lors de l'ajout du film.");
-      setSuccessMessage(""); // Reset success message
-      console.error("Erreur lors de l'ajout du film", error.response);
+      console.error('Error adding seance:', error);
+      setErrorMessage('Failed to add séance. Please try again.');
+      setSuccessMessage('');
     }
-  };
+  }
   return (
-    <>
-      <>
-  {/* header */}
+   <>
+   
+       {/* header */}
   <header className="header">
     <div className="container">
       <div className="row">
@@ -273,7 +292,7 @@ const AddFilm = () => {
         <div className="col-12">
           <div className="section__wrap">
             {/* section title */}
-            <h1 className="section__title section__title--head">Films</h1>
+            <h1 className="section__title section__title--head">Seances</h1>
             {/* end section title */}
             {/* breadcrumbs */}
             <ul className="breadcrumbs">
@@ -281,7 +300,7 @@ const AddFilm = () => {
                 <a href="index.html">Home</a>
               </li>
               <li className="breadcrumbs__item breadcrumbs__item--active">
-               New Film
+               New Session
               </li>
             </ul>
             {/* end breadcrumbs */}
@@ -299,130 +318,130 @@ const AddFilm = () => {
           <div className="row">
             {/* section title */}
             <div className="col-12">
-              <h2 className="section__title">Add New Film</h2>
+              <h2 className="section__title">Add New Seance</h2>
             </div>
             {/* end section title */}
             <div className="col-12">
             <form onSubmit={handleSubmit} className="sign__form sign__form--full">
-                  <div className="row">
-                    {/* Titre */}
-                    <div className="col-12 col-xl-6">
-                      <div className="sign__group">
-                        <label className="sign__label" htmlFor="titre">
-                          Titre
-                        </label>
-                        <input
-                          id="titre"
-                          type="text"
-                          name="titre"
-                          className="sign__input"
-                          placeholder="Titre du film"
-                          value={titre}
-                          onChange={(e) => setTitre(e.target.value)}
-                          required
-                        />
-                      </div>
-                    </div>
+      <div className="row">
+        {/* Film */}
+        <div className="col-12 col-xl-6">
+          <div className="sign__group">
+            <label className="sign__label" htmlFor="filmId">
+              Film
+            </label>
+            <select
+              id="filmId"
+              name="filmId"
+              className="sign__input"
+              value={filmId}
+              onChange={(e) => setFilmId(e.target.value)}
+              required
+            >
+              <option value="">Sélectionner un film</option>
+              {films.map((film) => (
+                <option key={film.id} value={film.id}>
+                  {film.titre}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        {/* Salle */}
+        <div className="col-12 col-xl-6">
+          <div className="sign__group">
+            <label className="sign__label" htmlFor="salleId">
+              Salle
+            </label>
+            <select
+              id="salleId"
+              name="salleId"
+              className="sign__input"
+              value={salleId}
+              onChange={(e) => setSalleId(e.target.value)}
+              required
+              style={{
+                color: '#fff', // Ensure the text color is black
+                
+              }}
+            >
+              <option value="">Sélectionner une salle</option>
+              {salles.map((salle) => (
+                <option key={salle.id} value={salle.id}>
+                  {salle.numeroSalle}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        {/* Date */}
+        <div className="col-12 col-xl-6">
+          <div className="sign__group">
+            <label className="sign__label" htmlFor="date">
+              Date
+            </label>
+            <input
+              id="date"
+              type="date"
+              name="date"
+              className="sign__input"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+        {/* Heure Début */}
+        <div className="col-12 col-xl-6">
+          <div className="sign__group">
+            <label className="sign__label" htmlFor="heureDebut">
+              Heure Début
+            </label>
+            <input
+              id="heureDebut"
+              type="time"
+              name="heureDebut"
+              className="sign__input"
+              value={heureDebut}
+              onChange={(e) => setHeureDebut(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+        {/* Heure Fin */}
+        <div className="col-12">
+          <div className="sign__group">
+            <label className="sign__label" htmlFor="heureFin">
+              Heure Fin
+            </label>
+            <input
+              id="heureFin"
+              type="time"
+              name="heureFin"
+              className="sign__input"
+              value={heureFin}
+              onChange={(e) => setHeureFin(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+        {/* Submit Button */}
+        <div className="col-12">
+          <button type="submit" className="sign__btn sign__btn--small">
+            Ajouter la Séance
+          </button>
+        </div>
+      </div>
+      {/* Success/Error Messages */}
+      {successMessage && <p className="success-message"
+       style={{
+  color: 'orange',
+}}
+      >{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+    </form>
 
-                    {/* Durée */}
-                    <div className="col-12 col-xl-6">
-                      <div className="sign__group">
-                        <label className="sign__label" htmlFor="duree">
-                          Durée (en minutes)
-                        </label>
-                        <input
-                          id="duree"
-                          type="number"
-                          name="duree"
-                          className="sign__input"
-                          placeholder="Durée"
-                          value={duree}
-                          onChange={(e) => setDuree(e.target.value)}
-                          required
-                        />
-                      </div>
-                    </div>
 
-                    {/* Genre */}
-                    <div className="col-12">
-                      <div className="sign__group">
-                        <label className="sign__label" htmlFor="genre">
-                          Genre
-                        </label>
-                        <select
-                          id="genre"
-                          name="genre"
-                          className="sign__input"
-                          value={genre}
-                          onChange={(e) => setGenre(e.target.value)}
-                          required
-                        >
-                          <option value="">Sélectionner un genre</option>
-                          <option value="HORROR">Horror</option>
-                          <option value="ACTION">Action</option>
-                          <option value="DRAMA">Drama</option>
-                          <option value="COMEDY">Comedy</option>
-                          <option value="THRILLER">Thriller</option>
-                          <option value="FANTASY">Fantasy</option>
-                          <option value="SCIENCE_FICTION">Science Fiction</option>
-                          <option value="ROMANCE">Romance</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Prix */}
-                    <div className="col-12">
-                      <div className="sign__group">
-                        <label className="sign__label" htmlFor="prix">
-                          Prix
-                        </label>
-                        <input
-                          id="prix"
-                          type="number"
-                          name="prix"
-                          className="sign__input"
-                          placeholder="Prix"
-                          value={prix}
-                          onChange={(e) => setPrix(e.target.value)}
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    {/* Image File */}
-                    <div className="col-12">
-                      <div className="sign__group">
-                        <label className="sign__label" htmlFor="file">
-                          Image
-                        </label>
-                        <input
-                          id="file"
-                          type="file"
-                          name="file"
-                          accept="image/*"
-                          className="sign__input"
-                          onChange={(e) => setImageFile(e.target.files[0])}
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    {/* Submit Button */}
-                    <div className="col-12">
-                      <button type="submit" className="sign__btn sign__btn--small">
-                        Ajouter le Film
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Success/Error Messages */}
-                  {successMessage && <p className="success-message"
-                   style={{
-                    color: 'orange',
-                  }}
-                  >{successMessage}</p>}
-                  {errorMessage && <p className="error-message">{errorMessage}</p>}
-                </form>
             </div>
           </div>
         </div>
@@ -440,27 +459,27 @@ const AddFilm = () => {
                 us!
               </p>
               <div className="contacts__social">
-                <a href="#">
-                  <i className="ti ti-brand-facebook" />
-                </a>
-                <a href="#">
-                  <i className="ti ti-brand-x" />
-                </a>
-                <a
-                  href="https://www.instagram.com/mohameedghh/"
-                  target="_blank"
-                >
-                  <i className="ti ti-brand-instagram" />
-                </a>
-                <a href="#">
-                  <i className="ti ti-brand-discord" />
-                </a>
-                <a href="#">
-                  <i className="ti ti-brand-telegram" />
-                </a>
-                <a href="#">
-                  <i className="ti ti-brand-tiktok" />
-                </a>
+              <a href="#">
+  <i className="ti ti-brand-facebook" />
+</a>
+<a href="#">
+  <i className="ti ti-brand-x" />
+</a>
+<a
+  href="https://www.instagram.com/mohameedghh/"
+  target="_blank"
+>
+  <i className="ti ti-brand-instagram" />
+</a>
+<a href="#">
+  <i className="ti ti-brand-discord" />
+</a>
+<a href="#">
+  <i className="ti ti-brand-telegram" />
+</a>
+<a href="#">
+  <i className="ti ti-brand-tiktok" />
+</a>
               </div>
             </div>
             {/* end contacts */}
@@ -493,10 +512,11 @@ const AddFilm = () => {
       </div>
     </div>
   </footer>
-</>
 
-    </>
+   
+   </>
+    
   );
 };
 
-export default AddFilm;
+export default AddSeance;

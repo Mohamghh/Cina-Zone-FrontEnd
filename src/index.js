@@ -7,6 +7,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import AddFilm from './pages/AddFilm';
 import Movies from './pages/Movies';
 import Homepage from './pages/Homepage';
+import AddSalle from './pages/AddSalle';
+import AddSeance from './pages/AddSeance';
+import Salles from './pages/Salles';
+import Seances from './pages/Seances';
 
 
 
@@ -28,9 +32,29 @@ const router = createBrowserRouter([
     },
 
     {
+      path: "/Salles",
+      element: <Salles />
+      },
+
+    {
       path: "/AddFilm",
       element: <AddFilm />
       },
+
+      {
+        path: "/AddSeance",
+        element: <AddSeance />
+        },
+
+        {
+          path: "/AddSalle",
+          element: <AddSalle />
+          },  
+
+          {
+            path: "/Seances",
+            element: <Seances />
+            },    
   ]
 }
 ]);

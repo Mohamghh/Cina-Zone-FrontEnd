@@ -1,71 +1,38 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const AddFilm = () => {
-  // Define state variables for form fields
-  const [titre, setTitre] = useState("");
-  const [duree, setDuree] = useState("");
-  const [genre, setGenre] = useState("");
-  const [prix, setPrix] = useState(""); // Price state
-  const [imageFile, setImageFile] = useState(null);
+const AddSalle = () => {
+  const [numeroSalle, setNumeroSalle] = useState("");
+  const [capacitePlaces, setCapacitePlaces] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Convert duration and price to numbers
-    const dureeLong = parseInt(duree, 10);
-    const prixDecimal = parseFloat(prix);
-
-    // Validation checks for duration and price
-    if (isNaN(dureeLong) || dureeLong <= 0) {
-      alert("La durée doit être un nombre entier positif.");
-      return;
-    }
-
-    if (isNaN(prixDecimal) || prixDecimal <= 0) {
-      alert("Le prix doit être un nombre positif.");
-      return;
-    }
-
-    // Prepare form data to be sent to the backend
-    const formData = new FormData();
-    formData.append(
-      "film",
-      JSON.stringify({
-        titre,
-        duree: dureeLong,
-        genre,
-        prix: prixDecimal,
-      })
-    );
-    formData.append("file", imageFile);
+    // Data object for the POST request
+    const salleData = {
+      numeroSalle: parseInt(numeroSalle),
+      capacitePlaces: parseInt(capacitePlaces),
+    };
 
     try {
-      // Send data to the backend using axios
-      const response = await axios.post("http://localhost:8090/addfilm", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      // Set success message if film was added successfully
-      setSuccessMessage("Film ajouté avec succès !");
-      setErrorMessage(""); // Reset error message
-      console.log("Film ajouté avec succès", response.data);
+      const response = await axios.post("http://localhost:8090/AddSalle", salleData);
+      setSuccessMessage("Salle ajoutée avec succès !");
+      setErrorMessage(""); // Clear any previous error message
+      setNumeroSalle("");
+      setCapacitePlaces("");
     } catch (error) {
-      // Handle errors and show error message
-      setErrorMessage("Erreur lors de l'ajout du film.");
-      setSuccessMessage(""); // Reset success message
-      console.error("Erreur lors de l'ajout du film", error.response);
+      setErrorMessage("Erreur lors de l'ajout de la salle. Veuillez réessayer.");
+      setSuccessMessage(""); // Clear any previous success message
+      console.error(error);
     }
-  };
+};
+ 
   return (
     <>
-      <>
-  {/* header */}
+      
+       {/* header */}
   <header className="header">
     <div className="container">
       <div className="row">
@@ -273,7 +240,7 @@ const AddFilm = () => {
         <div className="col-12">
           <div className="section__wrap">
             {/* section title */}
-            <h1 className="section__title section__title--head">Films</h1>
+            <h1 className="section__title section__title--head">Salles</h1>
             {/* end section title */}
             {/* breadcrumbs */}
             <ul className="breadcrumbs">
@@ -281,7 +248,7 @@ const AddFilm = () => {
                 <a href="index.html">Home</a>
               </li>
               <li className="breadcrumbs__item breadcrumbs__item--active">
-               New Film
+               New Salle
               </li>
             </ul>
             {/* end breadcrumbs */}
@@ -299,133 +266,70 @@ const AddFilm = () => {
           <div className="row">
             {/* section title */}
             <div className="col-12">
-              <h2 className="section__title">Add New Film</h2>
+              <h2 className="section__title">Add New Salle</h2>
             </div>
             {/* end section title */}
             <div className="col-12">
             <form onSubmit={handleSubmit} className="sign__form sign__form--full">
-                  <div className="row">
-                    {/* Titre */}
-                    <div className="col-12 col-xl-6">
-                      <div className="sign__group">
-                        <label className="sign__label" htmlFor="titre">
-                          Titre
-                        </label>
-                        <input
-                          id="titre"
-                          type="text"
-                          name="titre"
-                          className="sign__input"
-                          placeholder="Titre du film"
-                          value={titre}
-                          onChange={(e) => setTitre(e.target.value)}
-                          required
-                        />
-                      </div>
-                    </div>
 
-                    {/* Durée */}
-                    <div className="col-12 col-xl-6">
-                      <div className="sign__group">
-                        <label className="sign__label" htmlFor="duree">
-                          Durée (en minutes)
-                        </label>
-                        <input
-                          id="duree"
-                          type="number"
-                          name="duree"
-                          className="sign__input"
-                          placeholder="Durée"
-                          value={duree}
-                          onChange={(e) => setDuree(e.target.value)}
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    {/* Genre */}
-                    <div className="col-12">
-                      <div className="sign__group">
-                        <label className="sign__label" htmlFor="genre">
-                          Genre
-                        </label>
-                        <select
-                          id="genre"
-                          name="genre"
-                          className="sign__input"
-                          value={genre}
-                          onChange={(e) => setGenre(e.target.value)}
-                          required
-                        >
-                          <option value="">Sélectionner un genre</option>
-                          <option value="HORROR">Horror</option>
-                          <option value="ACTION">Action</option>
-                          <option value="DRAMA">Drama</option>
-                          <option value="COMEDY">Comedy</option>
-                          <option value="THRILLER">Thriller</option>
-                          <option value="FANTASY">Fantasy</option>
-                          <option value="SCIENCE_FICTION">Science Fiction</option>
-                          <option value="ROMANCE">Romance</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    {/* Prix */}
-                    <div className="col-12">
-                      <div className="sign__group">
-                        <label className="sign__label" htmlFor="prix">
-                          Prix
-                        </label>
-                        <input
-                          id="prix"
-                          type="number"
-                          name="prix"
-                          className="sign__input"
-                          placeholder="Prix"
-                          value={prix}
-                          onChange={(e) => setPrix(e.target.value)}
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    {/* Image File */}
-                    <div className="col-12">
-                      <div className="sign__group">
-                        <label className="sign__label" htmlFor="file">
-                          Image
-                        </label>
-                        <input
-                          id="file"
-                          type="file"
-                          name="file"
-                          accept="image/*"
-                          className="sign__input"
-                          onChange={(e) => setImageFile(e.target.files[0])}
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    {/* Submit Button */}
-                    <div className="col-12">
-                      <button type="submit" className="sign__btn sign__btn--small">
-                        Ajouter le Film
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Success/Error Messages */}
-                  {successMessage && <p className="success-message"
-                   style={{
-                    color: 'orange',
-                  }}
-                  >{successMessage}</p>}
-                  {errorMessage && <p className="error-message">{errorMessage}</p>}
-                </form>
-            </div>
+            <div className="row">
+        {/* Numéro de Salle */}
+        <div className="col-12 col-xl-6">
+          <div className="sign__group">
+            <label className="sign__label" htmlFor="numeroSalle">
+              Numéro de Salle
+            </label>
+            <input
+              id="numeroSalle"
+              type="number"
+              name="numeroSalle"
+              className="sign__input"
+              placeholder="Numéro de la salle"
+              value={numeroSalle}
+              onChange={(e) => setNumeroSalle(e.target.value)}
+              required
+            />
           </div>
         </div>
+
+        {/* Capacité des Places */}
+        <div className="col-12 col-xl-6">
+          <div className="sign__group">
+            <label className="sign__label" htmlFor="capacitePlaces">
+              Capacité des Places
+            </label>
+            <input
+              id="capacitePlaces"
+              type="number"
+              name="capacitePlaces"
+              className="sign__input"
+              placeholder="Capacité des places"
+              value={capacitePlaces}
+              onChange={(e) => setCapacitePlaces(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <div className="col-12">
+          <button type="submit" className="sign__btn sign__btn--small">
+            Ajouter la Salle
+          </button>
+        </div>
+      </div>
+
+      {/* Success/Error Messages */}
+      {successMessage && <p className="success-message"
+       style={{
+        color: 'orange',
+      }}
+      >{successMessage}</p>}
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+    </form>
+        </div>
+          </div>
+            </div>
         <div className="col-12 col-md-6 col-xl-4">
           <div className="row">
             {/* contacts */}
@@ -461,7 +365,7 @@ const AddFilm = () => {
                 <a href="#">
                   <i className="ti ti-brand-tiktok" />
                 </a>
-              </div>
+             </div>
             </div>
             {/* end contacts */}
           </div>
@@ -480,11 +384,20 @@ const AddFilm = () => {
  <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
   <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
   </a>                  
-  <span className="footer__copyright">
-  © CINAZONE, 2024—2025 <br /> Create by   
-    Mohamed - Hamza
-  
-</span>
+            <span className="footer__copyright">
+              © HOTFLIX, 2019—2024 <br /> Create by{" "}
+              <a
+                href="https://themeforest.net/user/dmitryvolkov/portfolio"
+                target="_blank"
+              >
+                Dmitry Volkov
+              </a>
+            </span>
+            
+            
+            
+            
+            
             <button className="footer__back" type="button">
               <i className="ti ti-arrow-narrow-up" />
             </button>
@@ -493,10 +406,13 @@ const AddFilm = () => {
       </div>
     </div>
   </footer>
-</>
-
+ 
+    
     </>
+
+     
   );
+  
 };
 
-export default AddFilm;
+export default AddSalle;

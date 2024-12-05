@@ -2655,23 +2655,15 @@ export default function Homepage() {
       <div className="row">
         <div className="col-12">
           <div className="footer__content">
-            <a href="index.html" className="footer__logo">
-              <img src="img/logo.svg" alt="" />
-            </a>
+          <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+ <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
+  <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
+  </a>                  
             <span className="footer__copyright">
-              © HOTFLIX, 2019—2024 <br /> Create by{" "}
-              <a
-                href="https://themeforest.net/user/dmitryvolkov/portfolio"
-                target="_blank"
-              >
-                Dmitry Volkov
-              </a>
+              © CINAZONE, 2024—2025 <br /> Create by                           
+                Mohamed - Hamza
+              
             </span>
-            <nav className="footer__nav">
-              <a href="about.html">About Us</a>
-              <a href="contacts.html">Contacts</a>
-              <a href="privacy.html">Privacy policy</a>
-            </nav>
             <button className="footer__back" type="button">
               <i className="ti ti-arrow-narrow-up" />
             </button>

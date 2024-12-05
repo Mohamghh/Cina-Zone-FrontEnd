@@ -1,6 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function Movies() {
+const Movies = () => {
+  const [films, setFilms] = useState([]); // State to store films
+
+  useEffect(() => {
+    // Fetch films from backend
+    const fetchFilms = async () => {
+      try {
+        const response = await axios.get("http://localhost:8090/films");
+        setFilms(response.data); // Store films in state
+      } catch (error) {
+        console.error("Error fetching films:", error);
+      }
+    };
+
+    fetchFilms();
+  }, []);
   return (
     
     <>
@@ -12,106 +28,45 @@ export default function Movies() {
         <div className="col-12">
           <div className="header__content">
             {/* header logo */}
-            <a href="index.html" className="header__logo">
-              <img src="img/logo.svg" alt="" />
-            </a>
+            <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+            <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
+             <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
+             </a>                  
             {/* end header logo */}
-            {/* header nav */}
-            <ul className="header__nav">
-              {/* dropdown */}
-              <li className="header__nav-item">
-                <a
-                  className="header__nav-link"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Home <i className="ti ti-chevron-down" />
-                </a>
-                <ul className="dropdown-menu header__dropdown-menu">
-                  <li>
-                    <a href="index.html">Home style 1</a>
-                  </li>
-                  <li>
-                    <a href="index2.html">Home style 2</a>
-                  </li>
-                  <li>
-                    <a href="index3.html">Home style 3</a>
-                  </li>
-                </ul>
-              </li>
-              {/* end dropdown */}
-              {/* dropdown */}
-              <li className="header__nav-item">
-                <a
-                  className="header__nav-link"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Catalog <i className="ti ti-chevron-down" />
-                </a>
-                <ul className="dropdown-menu header__dropdown-menu">
-                  <li>
-                    <a href="catalog.html">Catalog style 1</a>
-                  </li>
-                  <li>
-                    <a href="catalog2.html">Catalog style 2</a>
-                  </li>
-                  <li>
-                    <a href="details.html">Details Movie</a>
-                  </li>
-                  <li>
-                    <a href="details2.html">Details TV Series</a>
-                  </li>
-                </ul>
-              </li>
-              {/* end dropdown */}
-              <li className="header__nav-item">
-                <a href="pricing.html" className="header__nav-link">
-                  Pricing plan
-                </a>
-              </li>
-              {/* dropdown */}
-              <li className="header__nav-item">
-                <a
-                  className="header__nav-link"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Pages <i className="ti ti-chevron-down" />
-                </a>
-                <ul className="dropdown-menu header__dropdown-menu">
-                  <li>
-                    <a href="about.html">About Us</a>
-                  </li>
-                  <li>
-                    <a href="profile.html">Profile</a>
-                  </li>
-                  <li>
-                    <a href="actor.html">Actor</a>
-                  </li>
-                  <li>
-                    <a href="contacts.html">Contacts</a>
-                  </li>
-                  <li>
-                    <a href="faq.html">Help center</a>
-                  </li>
-                  <li>
-                    <a href="privacy.html">Privacy policy</a>
-                  </li>
-                  <li>
-                    <a href="../admin/index.html" target="_blank">
-                      Admin pages
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              {/* end dropdown */}
+             {/* header nav */}
+ <ul className="header__nav">
+   {/* dropdown */}
+   <li className="header__nav-item">
+     <a className="header__nav-link" href="#" role="button"  aria-expanded="false">Home <i className="" /></a>
+   </li>
+   {/* end dropdown */}
+   {/* dropdown */}
+   <li className="header__nav-item">
+     <a className="header__nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Movies <i className="" /></a>
+   </li>
+   {/* end dropdown */}
+   <li className="header__nav-item">
+     <a href="pricing.html" className="header__nav-link">Seances</a>
+   </li>
+   {/* dropdown */}
+    {/* end dropdown */}
+   <li className="header__nav-item">
+      <a href="pricing.html" className="header__nav-link">Salles</a>
+     </li>
+    {/* dropdown */}
+   <li className="header__nav-item">
+     <a className="header__nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages <i className="ti ti-chevron-down" /></a>
+     <ul className="dropdown-menu header__dropdown-menu">
+       <li><a href="about.html">About Us</a></li>
+       <li><a href="profile.html">Profile</a></li>
+       <li><a href="actor.html">Actor</a></li>
+       <li><a href="contacts.html">Contacts</a></li>
+       <li><a href="faq.html">Help center</a></li>
+       <li><a href="privacy.html">Privacy policy</a></li>
+       <li><a href="../admin/index.html" target="_blank">Admin pages</a></li>
+     </ul>
+   </li>
+   {/* end dropdown */}
               {/* dropdown */}
               <li className="header__nav-item">
                 <a
@@ -209,7 +164,7 @@ export default function Movies() {
         <div className="col-12">
           <div className="section__wrap">
             {/* section title */}
-            <h1 className="section__title section__title--head">Catalog</h1>
+            <h1 className="section__title section__title--head">Films</h1>
             {/* end section title */}
             {/* breadcrumbs */}
             <ul className="breadcrumbs">
@@ -217,7 +172,7 @@ export default function Movies() {
                 <a href="index.html">Home</a>
               </li>
               <li className="breadcrumbs__item breadcrumbs__item--active">
-                Catalog
+                Films
               </li>
             </ul>
             {/* end breadcrumbs */}
@@ -284,43 +239,9 @@ export default function Movies() {
                   <option value={33}>Travel</option>
                   <option value={34}>Western</option>
                 </select>
-                <select
-                  className="filter__select"
-                  name="quality"
-                  id="filter__quality"
-                >
-                  <option value={0}>Any quality</option>
-                  <option value={1}>HD 1080</option>
-                  <option value={2}>HD 720</option>
-                  <option value={3}>DVD</option>
-                  <option value={4}>TS</option>
-                </select>
-                <select
-                  className="filter__select"
-                  name="rate"
-                  id="filter__rate"
-                >
-                  <option value={0}>Any rating</option>
-                  <option value={1}>from 3.0</option>
-                  <option value={2}>from 5.0</option>
-                  <option value={3}>from 7.0</option>
-                  <option value={4}>Golder Star</option>
-                </select>
-                <select
-                  className="filter__select"
-                  name="sort"
-                  id="filter__sort"
-                >
-                  <option value={0}>Relevance</option>
-                  <option value={1}>Newest</option>
-                  <option value={2}>Oldest</option>
-                </select>
               </div>
               {/* end filter desk */}
               {/* filter btn */}
-              <button className="filter__btn" type="button">
-                Apply
-              </button>
               {/* end filter btn */}
               {/* amount */}
               <span className="filter__amount">Showing 18 of 1713</span>
@@ -334,31 +255,37 @@ export default function Movies() {
     {/* catalog */}
     <div className="section section--catalog">
       <div className="container">
-        <div className="row">
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">8.4</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">I Dream in Another Language</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Action</a>
-                  <a href="#">Triler</a>
-                </span>
-              </div>
+      <div className="row">
+
+      {films.map((film) => (
+        <div className="col-6 col-sm-4 col-lg-3 col-xl-2" key={film.id}>
+          <div className="item">
+            <div className="item__cover">
+              <img
+                src={`data:${film.imageType};base64,${film.image}`} // Render the image
+                alt={film.titre}
+                style={{ width: '195px', height: '285px', objectFit: 'cover' }} // Inline styling for consistent image size
+              />
+              <a href="details.html" className="item__play">
+                <i className="ti ti-player-play-filled" />
+              </a>
+              <span className="item__rate item__rate--green">{film.duree}</span>
+              <button className="item__favorite" type="button">
+                <i className="ti ti-bookmark" />
+              </button>
+            </div>
+            <div className="item__content">
+              <h3 className="item__title">
+                <a href="details.html">{film.titre}</a>
+              </h3>
+              <span className="item__category">
+                <a href="#">{film.genre}</a>
+              </span>
             </div>
           </div>
+        </div>
+
+      ))}
           {/* end item */}
           {/* item */}
           <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
@@ -1122,23 +1049,15 @@ export default function Movies() {
       <div className="row">
         <div className="col-12">
           <div className="footer__content">
-            <a href="index.html" className="footer__logo">
-              <img src="img/logo.svg" alt="" />
-            </a>
+          <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+<span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
+ <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
+ </a>                  
+                       
             <span className="footer__copyright">
-              © HOTFLIX, 2019—2024 <br /> Create by{" "}
-              <a
-                href="https://themeforest.net/user/dmitryvolkov/portfolio"
-                target="_blank"
-              >
-                Dmitry Volkov
-              </a>
+              © CINAZONE, 2024—2025 <br /> Created by Mohamed - Hamza
+              
             </span>
-            <nav className="footer__nav">
-              <a href="about.html">About Us</a>
-              <a href="contacts.html">Contacts</a>
-              <a href="privacy.html">Privacy policy</a>
-            </nav>
             <button className="footer__back" type="button">
               <i className="ti ti-arrow-narrow-up" />
             </button>
@@ -1206,5 +1125,8 @@ export default function Movies() {
     </>
         
     
-  )
-}
+  );
+};
+
+
+export default Movies;

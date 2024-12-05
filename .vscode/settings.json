@@ -1,0 +1,8 @@
+{
+    "editor.screenReaderAnnounceInlineSuggestion": true,
+    "editor.matchBrackets": "always",
+    "C_Cpp.vcFormat.space.beforeEmptySquareBrackets": false,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.highlightActiveBracketPair": true,
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false
+}
