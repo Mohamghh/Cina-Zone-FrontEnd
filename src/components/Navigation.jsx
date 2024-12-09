@@ -1,70 +1,45 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 
 export default function Navigation() {
   return (
     
     
 <ul className="header__nav">
- 
-  <li className="header__nav-item">
-    <a
-      className="header__nav-link"
-      href="#"
-      role="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"> Home <i className="ti ti-chevron-down" />
-    </a>
-    <ul className="dropdown-menu header__dropdown-menu">
-      <li>
-        <a href="index.html">Home style 1</a>
+<li className="header__nav-item">
+        <Link className="header__nav-link" to="/">
+          Home <i className="" />
+        </Link>
       </li>
-      <li>
-        <a href="index2.html">Home style 2</a>
-      </li>
-      <li>
-        <a href="index3.html">Home style 3</a>
-      </li>
-    </ul>
-  </li>
 
-  
-  
-  <li className="header__nav-item">
-    <a
-      className="header__nav-link"
-      href="#"
-      role="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      Catalog <i className="ti ti-chevron-down" />
-    </a>
-    <ul className="dropdown-menu header__dropdown-menu">
-      <li>
-        <a href="catalog.html">Catalog style 1</a>
+      <li className="header__nav-item">
+        <Link className="header__nav-link" to="/Movies">
+          Movies <i className="" />
+        </Link>
       </li>
-      <li>
-        <a href="catalog2.html">Catalog style 2</a>
-      </li>
-      <li>
-        <a href="details.html">Details Movie</a>
-      </li>
-      <li>
-        <a href="details2.html">Details TV Series</a>
-      </li>
-    </ul>
-  </li>
+
+
+      <li className="header__nav-item">
+   <Link className="header__nav-link" to="/Salles">
+     Salles <i className="" />
+   </Link>
+  </li>  
+
+   <li className="header__nav-item">
+   <Link className="header__nav-link" to="/Seances">
+     Seances <i className="" />
+   </Link>
+ </li>  
  
+
+   {/* Link to the Pricing plan page 
   <li className="header__nav-item">
     <a href="pricing.html" className="header__nav-link">
       Pricing plan
     </a>
-  </li>
+  </li> */}
  
   <li className="header__nav-item">
-    <a className="header__nav-link" href="#" role="button" data-bs-toggle="dropdown"
-      aria-expanded="false"> Pages <i className="ti ti-chevron-down" />
-    </a>
     <ul className="dropdown-menu header__dropdown-menu">
       <li>
         <a href="about.html">About Us</a>
@@ -93,31 +68,6 @@ export default function Navigation() {
   </li>
 
   
-  <li className="header__nav-item">
-    <a
-      className="header__nav-link header__nav-link--more"
-      href="#"
-      role="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      <i className="ti ti-dots" />
-    </a>
-    <ul className="dropdown-menu header__dropdown-menu">
-      <li>
-        <a href="signin.html">Sign in</a>
-      </li>
-      <li>
-        <a href="signup.html">Sign up</a>
-      </li>
-      <li>
-        <a href="forgot.html">Forgot password</a>
-      </li>
-      <li>
-        <a href="404.html">404 Page</a>
-      </li>
-    </ul>
-  </li>
  
 </ul>
 

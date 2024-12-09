@@ -1,15 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Navigation from '../components/Navigation';
 
 const Seances = () => {
   const [seances, setSeances] = useState([]);
+  const [selectedSeance, setSelectedSeance] = useState(null);
+  const [showReservationForm, setShowReservationForm] = useState(false);
+  const [reservationDate, setReservationDate] = useState('');
+  const [alertMessage, setAlertMessage] = useState(null);
 
-  // Fetch Seance data
+  const navigate = useNavigate();
+
   useEffect(() => {
-    axios.get('http://localhost:8080/seances') // Adjust your backend URL
-      .then(response => setSeances(response.data))
-      .catch(error => console.error('Error fetching seances:', error));
+    const fetchSeances = async () => {
+      try {
+        const response = await axios.get('http://localhost:8090/seances');
+        setSeances(response.data);
+      } catch (error) {
+        console.error('Erreur lors de la récupération des séances:', error);
+      }
+    };
+
+    fetchSeances();
   }, []);
+
+  const handleReserve = (seance) => {
+    setSelectedSeance(seance);
+    setShowReservationForm(true);
+  };
+
+  const handleSubmitReservation = async (e) => {
+    e.preventDefault();
+
+    if (!reservationDate) {
+      setAlertMessage({ type: 'error', text: 'Veuillez sélectionner une date.' });
+      return;
+    }
+
+    const reservationData = {
+      date_reservation: reservationDate,
+      seance: { id: selectedSeance.id },
+    };
+
+    try {
+      await axios.post('http://localhost:8090/addreservation', reservationData);
+      setAlertMessage({ type: 'success', text: 'Réservation confirmée avec succès !' });
+      navigate('/payement');
+      setShowReservationForm(false);
+      setReservationDate('');
+    } catch (error) {
+      console.error('Erreur lors de la réservation:', error);
+      setAlertMessage({ type: 'error', text: 'Échec de la réservation.' });
+    }
+  };
+
+
   return (
     
 
@@ -29,51 +75,8 @@ const Seances = () => {
   </a>                  
  {/* end header logo */}
                   {/* header nav */}
-                  <ul className="header__nav">
-                    {/* dropdown */}
-                    <li className="header__nav-item">
-                      <a className="header__nav-link" href="#" role="button"  aria-expanded="false">Home <i className="" /></a>
-                    </li>
-                    {/* end dropdown */}
-                    {/* dropdown */}
-                    <li className="header__nav-item">
-                      <a className="header__nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Movies <i className="ti ti-chevron-down" /></a>
-                    </li>
-                    {/* end dropdown */}
-                    <li className="header__nav-item">
-                      <a href="pricing.html" className="header__nav-link">Seances</a>
-                    </li>
-                    {/* dropdown */}
-                     {/* end dropdown */}
-                    <li className="header__nav-item">
-                       <a href="pricing.html" className="header__nav-link">Salles</a>
-                      </li>
-                     {/* dropdown */}
-                    <li className="header__nav-item">
-                      <a className="header__nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages <i className="ti ti-chevron-down" /></a>
-                      <ul className="dropdown-menu header__dropdown-menu">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="profile.html">Profile</a></li>
-                        <li><a href="actor.html">Actor</a></li>
-                        <li><a href="contacts.html">Contacts</a></li>
-                        <li><a href="faq.html">Help center</a></li>
-                        <li><a href="privacy.html">Privacy policy</a></li>
-                        <li><a href="../admin/index.html" target="_blank">Admin pages</a></li>
-                      </ul>
-                    </li>
-                    {/* end dropdown */}
-                    {/* dropdown */}
-                    <li className="header__nav-item">
-                      <a className="header__nav-link header__nav-link--more" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="ti ti-dots" />
-                      </a><ul className="dropdown-menu header__dropdown-menu"><a className="header__nav-link header__nav-link--more" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        </a><li><a className="header__nav-link header__nav-link--more" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" /><a href="signin.html">Sign in</a></li>
-                        <li><a href="signup.html">Sign up</a></li>
-                        <li><a href="forgot.html">Forgot password</a></li>
-                        <li><a href="404.html">404 Page</a></li>
-                      </ul>
-                    </li>
-                    {/* end dropdown */}
-                  </ul>
+                  <Navigation />
+                  
                   {/* end header nav */}
                   {/* header auth */}
                   <div className="header__auth">
@@ -126,41 +129,155 @@ const Seances = () => {
   <div className="container">
     <div className="row">
       {/* Title (Film Name) */}
-      <div className="col-12">
-        <h1 className="section__title section__title--head">
-           Séances
-        </h1>
-      </div>
       {/* end Title */}
-      
       {seances.map((seance) => (
-        <div key={seance.id} className="col-12 col-lg-9 col-xl-6">
-          <div className="item item--details">
-            <div className="row">
-              {/* Film Image */}
-              <div className="col-12 col-sm-5 col-md-5">
-                <div className="item__cover">
-                  <img src={seance.film.image} alt={seance.film.titre} />
+          <div key={seance.id} className="col-12 col-lg-9 col-xl-6">
+            <div className="item item--details">
+              <div className="row">
+                {/* Film Title Above Image */}
+        <div className="col-12">
+          <h2 className="section__title section__title--film" style={{ marginBottom: '15px'  }}>
+            {seance.film.titre}
+          </h2>
+        </div>
+        {/* Film Image */}
+                {/* Film Image */}
+                <div className="col-12 col-sm-5 col-md-5">
+                  <div className="item__cover">
+                  <img
+                    src={seance.film.image ? `data:${seance.film.imageType};base64,${seance.film.image}` : '/path/to/placeholder.png'}
+                    alt={seance.film.titre}
+                    className="img-fluid"
+                    style={{ width: '270px', height: '400px', objectFit: 'cover' }}
+                  />
+                  </div>
                 </div>
-              </div>
-              {/* Film Details */}
-              <div className="col-12 col-md-7">
-                <div className="item__content">
-                  <ul className="item__meta">
-                    <li><span>Film:</span> {seance.film.titre}</li>
-                    <li><span>Heure Début:</span> {seance.heureDebut}</li>
-                    <li><span>Heure Fin:</span> {seance.heureFin}</li>
-                    <li><span>Prix:</span> {seance.prix} MAD</li>
-                  </ul>
+                {/* Film Details */}
+                <div className="col-12 col-md-7">
+                  <div className="item__content">
+                    <ul className="item__meta">
+                    <li>
+                     <span>Début:</span> <span style={{ color: 'orange', fontWeight: 'bold' }}>{seance.heureDebut}  </span>
+                     </li>
+                     <li>
+                     <span>Fin:</span> <span style={{ color: 'orange', fontWeight: 'bold' }}>{seance.heureFin} </span>
+                     </li>
+                      <li>
+                      <span>Salle:</span> <span style={{ color: 'orange', fontWeight: 'bold' }} > {seance.salle.numeroSalle} </span>
+                      </li>
+                   
+                    
+                      <li>
+                        <span>Prix:</span> <span style={{ color: 'orange', fontWeight: 'bold' }}> {seance.film.prix} MAD </span>
+                      </li>
+                    </ul>
+
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => handleReserve(seance)}
+                      style={{
+                        backgroundColor: 'orange',
+                        borderColor: 'orange',
+                        color: 'white',
+                      }}
+                      
+                      
+                    > 
+                      Get Ticket 
+                    </button>
+                    
+                    
+                    
+                    
+                    
+                    
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
       {/* end content */}
     </div>
   </div>
+  {showReservationForm && selectedSeance && (
+  <>
+    {/* Bootstrap Modal */}
+    <div
+      className="modal fade show"
+      tabIndex="-1"
+      role="dialog"
+      style={{ display: "block", backgroundColor: "rgba(0, 0, 0, 0.7)" }} // Darker background behind the modal
+      aria-modal="true"
+    >
+      <div className="modal-dialog modal-dialog-scrollable" role="document">
+        <div className="modal-content" style={{ backgroundColor: "grey" }}> {/* Solid white background for the modal content */}
+          {/* Modal Header */}
+          <div className="modal-header">
+            <h5 className="modal-title">Réserver une Séance</h5>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={() => setShowReservationForm(false)}
+            ></button>
+          </div>
+
+          {/* Modal Body */}
+          <div className="modal-body">
+            <p>
+              <strong style={{ color: 'orange', fontWeight: 'bold' }} >Film:</strong> {selectedSeance.film.titre}
+            </p>
+            <p>
+              <strong style={{ color: 'orange', fontWeight: 'bold' }}>Salle:</strong> {selectedSeance.salle.numeroSalle}
+            </p>
+            <p>
+              <strong style={{ color: 'orange', fontWeight: 'bold' }}>Horaires:</strong> {selectedSeance.heureDebut} -{" "}
+              {selectedSeance.heureFin}
+            </p>
+            <p>
+              <strong style={{ color: 'orange', fontWeight: 'bold' }}>Prix:</strong> {selectedSeance.film.prix} MAD
+            </p>
+
+            <form onSubmit={handleSubmitReservation} className="space-y-3">
+              <div className="mb-3">
+                <label className="form-label" style={{ color: 'orange', fontWeight: 'bold' }}>Date de réservation</label>
+                <input
+                  type="date"
+                  className="form-control"
+                  value={reservationDate}
+                  onChange={(e) => setReservationDate(e.target.value)}
+                  required
+                  
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn w-100"
+                style={{ backgroundColor: '#ff8c00', borderColor: '#ff8c00', color: 'white' }}
+                
+              >
+                Confirmer la Réservation
+              </button>
+            </form>
+          </div>
+
+          {/* Modal Footer */}
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={() => setShowReservationForm(false)}
+            >
+              Fermer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </>
+)}
+
+      
   {/* end details content */}
 </section>
         {/* content */}

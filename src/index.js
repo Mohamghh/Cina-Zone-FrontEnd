@@ -11,6 +11,7 @@ import AddSalle from './pages/AddSalle';
 import AddSeance from './pages/AddSeance';
 import Salles from './pages/Salles';
 import Seances from './pages/Seances';
+import Payement from './pages/Payement';
 
 
 
@@ -54,7 +55,12 @@ const router = createBrowserRouter([
           {
             path: "/Seances",
             element: <Seances />
-            },    
+            },
+            
+            {
+              path: "/Payement",
+              element: <Payement />
+              },      
   ]
 }
 ]);

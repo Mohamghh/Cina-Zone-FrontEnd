@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Navigation from "../components/Navigation";
 
 const Movies = () => {
   const [films, setFilms] = useState([]); // State to store films
@@ -34,67 +35,8 @@ const Movies = () => {
              </a>                  
             {/* end header logo */}
              {/* header nav */}
- <ul className="header__nav">
-   {/* dropdown */}
-   <li className="header__nav-item">
-     <a className="header__nav-link" href="#" role="button"  aria-expanded="false">Home <i className="" /></a>
-   </li>
-   {/* end dropdown */}
-   {/* dropdown */}
-   <li className="header__nav-item">
-     <a className="header__nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Movies <i className="" /></a>
-   </li>
-   {/* end dropdown */}
-   <li className="header__nav-item">
-     <a href="pricing.html" className="header__nav-link">Seances</a>
-   </li>
-   {/* dropdown */}
-    {/* end dropdown */}
-   <li className="header__nav-item">
-      <a href="pricing.html" className="header__nav-link">Salles</a>
-     </li>
-    {/* dropdown */}
-   <li className="header__nav-item">
-     <a className="header__nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Pages <i className="ti ti-chevron-down" /></a>
-     <ul className="dropdown-menu header__dropdown-menu">
-       <li><a href="about.html">About Us</a></li>
-       <li><a href="profile.html">Profile</a></li>
-       <li><a href="actor.html">Actor</a></li>
-       <li><a href="contacts.html">Contacts</a></li>
-       <li><a href="faq.html">Help center</a></li>
-       <li><a href="privacy.html">Privacy policy</a></li>
-       <li><a href="../admin/index.html" target="_blank">Admin pages</a></li>
-     </ul>
-   </li>
-   {/* end dropdown */}
-              {/* dropdown */}
-              <li className="header__nav-item">
-                <a
-                  className="header__nav-link header__nav-link--more"
-                  href="#"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i className="ti ti-dots" />
-                </a>
-                <ul className="dropdown-menu header__dropdown-menu">
-                  <li>
-                    <a href="signin.html">Sign in</a>
-                  </li>
-                  <li>
-                    <a href="signup.html">Sign up</a>
-                  </li>
-                  <li>
-                    <a href="forgot.html">Forgot password</a>
-                  </li>
-                  <li>
-                    <a href="404.html">404 Page</a>
-                  </li>
-                </ul>
-              </li>
-              {/* end dropdown */}
-            </ul>
+             <Navigation />
+             
             {/* end header nav */}
             {/* header auth */}
             <div className="header__auth">
@@ -269,7 +211,7 @@ const Movies = () => {
               <a href="details.html" className="item__play">
                 <i className="ti ti-player-play-filled" />
               </a>
-              <span className="item__rate item__rate--green">{film.duree}</span>
+              <span className="item__rate item__rate--green">{film.prix}</span>
               <button className="item__favorite" type="button">
                 <i className="ti ti-bookmark" />
               </button>
