@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
+import { Link } from 'react-router-dom';
 
 const Seances = () => {
   const [seances, setSeances] = useState([]);
@@ -69,10 +70,10 @@ const Seances = () => {
               <div className="col-12">
                 <div className="header__content">
                      {/* header logo */}
- <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+ <Link to="/" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
  <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
   <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
-  </a>                  
+  </Link>                  
  {/* end header logo */}
                   {/* header nav */}
                   <Navigation />
@@ -121,6 +122,31 @@ const Seances = () => {
           </div>
         </header>
         {/* end header */}
+        {/* page title */}
+<section className="section section--first">
+  <div className="container">
+    <div className="row">
+      <div className="col-12">
+        <div className="section__wrap">
+          {/* section title */}
+          <h1 className="section__title section__title--head">Seances</h1>
+          {/* end section title */}
+          {/* breadcrumbs */}
+          <ul className="breadcrumbs">
+            <li className="breadcrumbs__item">
+              <Link to="/">Home</Link>
+            </li>
+            <li className="breadcrumbs__item breadcrumbs__item--active">
+              Seances
+            </li>
+          </ul>
+          {/* end breadcrumbs */}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{/* end page title */}
         <section className="section section--details">
   {/* details background */}
   <div className="section__details-bg" data-bg="img/bg/actor__bg.jpg"></div>
@@ -365,17 +391,28 @@ const Seances = () => {
         </section>
         {/* end content */}
         {/* footer */}
-        <footer className="footer">
+        <footer className="footer"
+         style={{
+          position: 'fixed',
+          bottom: 0,
+          width: '100%',
+          textAlign: 'center',
+          padding: '10px 0',
+          zIndex: 1000,
+        }}
+      >
+        
+        
           <div className="container">
             <div className="row">
               <div className="col-12">
                 <div className="footer__content">
                      {/* header logo */}
- <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
- <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
-  <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
-  </a>                  
- {/* end header logo */}
+                   <Link to="/" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+                   <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
+                   <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
+                    </Link>                  
+                    {/* end header logo */}
                   <span className="footer__copyright">© CINAZONE, 2024—2025 <br /> Created by Mohamed - Hamza
                     <button className="footer__back" type="button">
                       <i className="ti ti-arrow-narrow-up" />

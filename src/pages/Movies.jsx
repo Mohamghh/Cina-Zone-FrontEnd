@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navigation from "../components/Navigation";
+import { Link } from 'react-router-dom';
 
 const Movies = () => {
   const [films, setFilms] = useState([]); // State to store films
@@ -29,10 +30,10 @@ const Movies = () => {
         <div className="col-12">
           <div className="header__content">
             {/* header logo */}
-            <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+            <Link to="/" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
             <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
              <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
-             </a>                  
+             </Link>                  
             {/* end header logo */}
              {/* header nav */}
              <Navigation />
@@ -144,42 +145,16 @@ const Movies = () => {
                   className="filter__select"
                   name="genre"
                   id="filter__genre"
-                >
-                  <option value={0}>All genres</option>
-                  <option value={1}>Action/Adventure</option>
-                  <option value={2}>Animals</option>
-                  <option value={3}>Animation</option>
-                  <option value={4}>Biography</option>
-                  <option value={5}>Comedy</option>
-                  <option value={6}>Cooking</option>
-                  <option value={7}>Dance</option>
-                  <option value={8}>Documentary</option>
-                  <option value={9}>Drama</option>
-                  <option value={10}>Education</option>
-                  <option value={11}>Entertainment</option>
-                  <option value={12}>Family</option>
-                  <option value={13}>Fantasy</option>
-                  <option value={14}>History</option>
-                  <option value={15}>Horror</option>
-                  <option value={16}>Independent</option>
-                  <option value={17}>International</option>
-                  <option value={18}>Kids</option>
-                  <option value={19}>Medical</option>
-                  <option value={20}>Military/War</option>
-                  <option value={21}>Music</option>
-                  <option value={22}>Mystery/Crime</option>
-                  <option value={23}>Nature</option>
-                  <option value={24}>Paranormal</option>
-                  <option value={25}>Politics</option>
-                  <option value={26}>Racing</option>
-                  <option value={27}>Romance</option>
-                  <option value={28}>Sci-Fi/Horror</option>
-                  <option value={29}>Science</option>
-                  <option value={30}>Science Fiction</option>
-                  <option value={31}>Science/Nature</option>
-                  <option value={32}>Spanish</option>
-                  <option value={33}>Travel</option>
-                  <option value={34}>Western</option>
+                ><option value={0}>All genres</option>
+                <option value={1}>Action/Adventure</option>
+                <option value={2}>Horror</option>
+                <option value={3}>Science Fiction</option>
+                <option value={4}>Biography</option>
+                <option value={5}>Comedy</option>
+                <option value={6}>Thriller</option>
+                <option value={7}>Dance</option>
+                <option value={8}>Documentary</option>
+                <option value={9}>Drama</option>
                 </select>
               </div>
               {/* end filter desk */}
@@ -208,9 +183,9 @@ const Movies = () => {
                 alt={film.titre}
                 style={{ width: '195px', height: '285px', objectFit: 'cover' }} // Inline styling for consistent image size
               />
-              <a href="details.html" className="item__play">
-                <i className="ti ti-player-play-filled" />
-              </a>
+              <Link to="/Seances" className="item__play">
+                <i className="ti ti-ticket" />
+              </Link>
               <span className="item__rate item__rate--green">{film.prix}</span>
               <button className="item__favorite" type="button">
                 <i className="ti ti-bookmark" />
@@ -229,764 +204,33 @@ const Movies = () => {
 
       ))}
           {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover2.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">7.1</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Benched</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Comedy</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover3.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--red">6.3</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Whitney</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Romance</a>
-                  <a href="#">Drama</a>
-                  <a href="#">Music</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover4.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--yellow">6.9</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Blindspotting</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Comedy</a>
-                  <a href="#">Drama</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover5.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">8.4</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">I Dream in Another Language</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Action</a>
-                  <a href="#">Triler</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover6.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">7.1</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Benched</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Comedy</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover7.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">7.1</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Benched</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Comedy</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover8.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--red">5.5</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">I Dream in Another Language</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Action</a>
-                  <a href="#">Triler</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover9.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--yellow">6.7</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Blindspotting</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Comedy</a>
-                  <a href="#">Drama</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover10.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--red">5.6</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Whitney</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Romance</a>
-                  <a href="#">Drama</a>
-                  <a href="#">Music</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover11.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">9.2</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Benched</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Comedy</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover12.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">8.4</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">I Dream in Another Language</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Action</a>
-                  <a href="#">Triler</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover13.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">8.0</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">I Dream in Another Language</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Action</a>
-                  <a href="#">Triler</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover14.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">7.2</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Benched</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Comedy</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover15.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--yellow">5.9</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Whitney</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Romance</a>
-                  <a href="#">Drama</a>
-                  <a href="#">Music</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover16.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">8.3</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Blindspotting</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Comedy</a>
-                  <a href="#">Drama</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover17.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">8.0</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">I Dream in Another Language</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Action</a>
-                  <a href="#">Triler</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
-          {/* item */}
-          <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-            <div className="item">
-              <div className="item__cover">
-                <img src="img/covers/cover18.jpg" alt="" />
-                <a href="details.html" className="item__play">
-                  <i className="ti ti-player-play-filled" />
-                </a>
-                <span className="item__rate item__rate--green">7.1</span>
-                <button className="item__favorite" type="button">
-                  <i className="ti ti-bookmark" />
-                </button>
-              </div>
-              <div className="item__content">
-                <h3 className="item__title">
-                  <a href="details.html">Benched</a>
-                </h3>
-                <span className="item__category">
-                  <a href="#">Comedy</a>
-                </span>
-              </div>
-            </div>
-          </div>
-          {/* end item */}
         </div>
         <div className="row">
-          {/* more */}
+          {/* more 
           <div className="col-12">
             <button className="section__more" type="button">
               Load more
             </button>
-          </div>
-          {/* end more */}
+          </div>*/}
+          
         </div>
       </div>
     </div>
     {/* end catalog */}
   </div>
   {/* end fixed filter wrap */}
-  {/* section */}
-  <section className="section section--border">
-    <div className="container">
-      <div className="row">
-        {/* section title */}
-        <div className="col-12">
-          <div className="section__title-wrap">
-            <h2 className="section__title">Expected premiere</h2>
-            <a
-              href="catalog.html"
-              className="section__view section__view--carousel"
-            >
-              View All
-            </a>
-          </div>
-        </div>
-        {/* end section title */}
-        {/* carousel */}
-        <div className="col-12">
-          <div className="section__carousel splide splide--content">
-            <div className="splide__arrows">
-              <button
-                className="splide__arrow splide__arrow--prev"
-                type="button"
-              >
-                <i className="ti ti-chevron-left" />
-              </button>
-              <button
-                className="splide__arrow splide__arrow--next"
-                type="button"
-              >
-                <i className="ti ti-chevron-right" />
-              </button>
-            </div>
-            <div className="splide__track">
-              <ul className="splide__list">
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">8.4</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">I Dream in Another Language</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Action</a>
-                        <a href="#">Triler</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover2.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">7.1</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Benched</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover3.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--red">6.3</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Whitney</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Romance</a>
-                        <a href="#">Drama</a>
-                        <a href="#">Music</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover4.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--yellow">6.9</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Blindspotting</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                        <a href="#">Drama</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover5.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">8.4</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">I Dream in Another Language</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Action</a>
-                        <a href="#">Triler</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover6.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">7.1</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Benched</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover7.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">7.1</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Benched</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover8.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--red">5.5</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">I Dream in Another Language</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Action</a>
-                        <a href="#">Triler</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover9.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--yellow">6.7</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Blindspotting</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                        <a href="#">Drama</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover10.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--red">5.6</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Whitney</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Romance</a>
-                        <a href="#">Drama</a>
-                        <a href="#">Music</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover11.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">9.2</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Benched</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover12.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">8.4</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">I Dream in Another Language</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Action</a>
-                        <a href="#">Triler</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        {/* end carousel */}
-      </div>
-    </div>
-  </section>
-  {/* end section */}
   {/* footer */}
-  <footer className="footer">
+  <footer className="footer" 
+   style={{
+    position: 'fixed',
+    bottom: 0,
+    width: '100%',
+    textAlign: 'center',
+    padding: '10px 0',
+    zIndex: 1000,
+  }}
+  
+  >
     <div className="container">
       <div className="row">
         <div className="col-12">
@@ -1022,39 +266,14 @@ const Movies = () => {
         <select className="filter__select" name="mgenre" id="mfilter__genre">
           <option value={0}>All genres</option>
           <option value={1}>Action/Adventure</option>
-          <option value={2}>Animals</option>
-          <option value={3}>Animation</option>
+          <option value={2}>Horror</option>
+          <option value={3}>Science Fiction</option>
           <option value={4}>Biography</option>
           <option value={5}>Comedy</option>
-          <option value={6}>Cooking</option>
+          <option value={6}>Thriller</option>
           <option value={7}>Dance</option>
           <option value={8}>Documentary</option>
           <option value={9}>Drama</option>
-          <option value={10}>Education</option>
-          <option value={11}>Entertainment</option>
-          <option value={12}>Family</option>
-          <option value={13}>Fantasy</option>
-          <option value={14}>History</option>
-          <option value={15}>Horror</option>
-          <option value={16}>Independent</option>
-          <option value={17}>International</option>
-          <option value={18}>Kids</option>
-          <option value={19}>Medical</option>
-          <option value={20}>Military/War</option>
-          <option value={21}>Music</option>
-          <option value={22}>Mystery/Crime</option>
-          <option value={23}>Nature</option>
-          <option value={24}>Paranormal</option>
-          <option value={25}>Politics</option>
-          <option value={26}>Racing</option>
-          <option value={27}>Romance</option>
-          <option value={28}>Sci-Fi/Horror</option>
-          <option value={29}>Science</option>
-          <option value={30}>Science Fiction</option>
-          <option value={31}>Science/Nature</option>
-          <option value={32}>Spanish</option>
-          <option value={33}>Travel</option>
-          <option value={34}>Western</option>
         </select>
       </div>
     </div>

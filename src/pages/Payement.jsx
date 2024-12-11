@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 
 const Payement = () => {
@@ -74,10 +75,10 @@ const Payement = () => {
           {/* Payment Form */}
           <form onSubmit={handlePayment} className="sign__form">
             {/* Logo */}
-            <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+            <Link to="/" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
        <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
        <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
- </a>                  
+ </Link>                  
             
             
             

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navigation from '../components/Navigation';
 import Header from '../components/Header';
+import { Link } from 'react-router-dom';
 
 const AddSeance = () => {
   // State for the form
@@ -93,10 +94,10 @@ const AddSeance = () => {
         <div className="col-12">
           <div className="header__content">
             {/* header logo */}
-            <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+            <Link to="/" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
             <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
             <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
-            </a>                  
+            </Link>                  
             
             
             
@@ -181,7 +182,7 @@ const AddSeance = () => {
                 <a href="index.html">Home</a>
               </li>
               <li className="breadcrumbs__item breadcrumbs__item--active">
-               New Session
+               Seances
               </li>
             </ul>
             {/* end breadcrumbs */}

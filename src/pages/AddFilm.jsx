@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Navigation from "../components/Navigation";
-import Header from "../components/Header";
+import { Link } from 'react-router-dom';
 
 const AddFilm = () => {
   // Define state variables for form fields
@@ -74,17 +74,17 @@ const AddFilm = () => {
         <div className="col-12">
           <div className="header__content">
             {/* header logo */}
-            <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+            <Link to="/" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
             <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
             <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
-            </a>                  
+            </Link>                  
             
             
             
             {/* end header logo */}
             {/* header nav */}
             <Navigation />
-            <Header />
+            
             {/* header auth */}
             <div className="header__auth">
               <form action="#" className="header__search">
@@ -161,7 +161,7 @@ const AddFilm = () => {
                 <a href="index.html">Home</a>
               </li>
               <li className="breadcrumbs__item breadcrumbs__item--active">
-               New Film
+              Film
               </li>
             </ul>
             {/* end breadcrumbs */}

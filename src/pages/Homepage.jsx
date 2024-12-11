@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import Navigation from '../components/Navigation'
 import Header from '../components/Header'
+import { Link } from 'react-router-dom';
 
 export default function Homepage() {
   return (
@@ -13,10 +14,10 @@ export default function Homepage() {
         <div className="col-12">
           <div className="header__content">
             {/* header logo */}
-            <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+            <Link to="/" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
             <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
             <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
-            </a>                  
+            </Link>                  
             {/* end header logo */}
            <Header />       
            <Navigation />
@@ -133,169 +134,11 @@ export default function Homepage() {
         {/* home title */}
         <div className="col-12">
           <h1 className="home__title">
-            <b>NEW ITEMS</b> OF THIS SEASON
+            <b>CINAZONE</b> Redefining Cinema!
           </h1>
         </div>
         {/* end home title */}
-        {/* home carousel */}
-        <div className="col-12">
-          <div className="home__carousel splide splide--home">
-            <div className="splide__arrows">
-              <button
-                className="splide__arrow splide__arrow--prev"
-                type="button"
-              >
-                <i className="ti ti-chevron-left" />
-              </button>
-              <button
-                className="splide__arrow splide__arrow--next"
-                type="button"
-              >
-                <i className="ti ti-chevron-right" />
-              </button>
-            </div>
-            <div className="splide__track">
-              <ul className="splide__list">
-                <li className="splide__slide">
-                  <div className="item item--hero">
-                    <div className="item__cover">
-                      <img src="img/covers/cover12.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">8.4</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">The Edge of Tomorrow</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Action</a>
-                        <a href="#">Triler</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--hero">
-                    <div className="item__cover">
-                      <img src="img/covers/cover2.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">7.1</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Benched</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--hero">
-                    <div className="item__cover">
-                      <img src="img/covers/cover8.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">7.9</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Green Hell</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Romance</a>
-                        <a href="#">Drama</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--hero">
-                    <div className="item__cover">
-                      <img src="img/covers/cover9.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--yellow">6.8</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Survival Spliton</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                        <a href="#">Drama</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--hero">
-                    <div className="item__cover">
-                      <img src="img/covers/cover13.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">9.1</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">The Chebod</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Drama</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--hero">
-                    <div className="item__cover">
-                      <img src="img/covers/cover5.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--yellow">6.7</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Shadow</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Drama</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        {/* end home carousel */}
+        
       </div>
     </div>
   </section>
@@ -326,46 +169,7 @@ export default function Homepage() {
                   aria-controls="tab-1"
                   aria-selected="true"
                 >
-                  New items
-                </button>
-              </li>
-              <li className="nav-item" role="presentation">
-                <button
-                  id="2-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#tab-2"
-                  type="button"
-                  role="tab"
-                  aria-controls="tab-2"
-                  aria-selected="false"
-                >
                   Movies
-                </button>
-              </li>
-              <li className="nav-item" role="presentation">
-                <button
-                  id="3-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#tab-3"
-                  type="button"
-                  role="tab"
-                  aria-controls="tab-3"
-                  aria-selected="false"
-                >
-                  TV Shows
-                </button>
-              </li>
-              <li className="nav-item" role="presentation">
-                <button
-                  id="4-tab"
-                  data-bs-toggle="tab"
-                  data-bs-target="#tab-4"
-                  type="button"
-                  role="tab"
-                  aria-controls="tab-4"
-                  aria-selected="false"
-                >
-                  Anime
                 </button>
               </li>
             </ul>
@@ -389,10 +193,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <Link to="/Seances" className="item__play">
+                    <i className="ti ti-ticket" />
+                  </Link>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -400,7 +204,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">I Dream in Another Language</a>
+                    <a href="details.html">Kissat Wafaa</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Action</a>
@@ -414,10 +218,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover2.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover2.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -438,10 +242,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover3.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover3.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--red">6.3</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -449,7 +253,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">Whitney</a>
+                    <a href="details.html">Hadda & Krimo</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Romance</a>
@@ -464,10 +268,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover4.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover4.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--yellow">6.9</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -475,7 +279,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">Blindspotting</a>
+                    <a href="details.html">Batal</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Comedy</a>
@@ -489,10 +293,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover5.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover5.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -500,7 +304,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">I Dream in Another Language</a>
+                    <a href="details.html">Za3zou3</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Action</a>
@@ -514,10 +318,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover6.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover6.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -525,7 +329,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">Benched</a>
+                    <a href="details.html">thor</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Comedy</a>
@@ -538,10 +342,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover7.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover7.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -549,10 +353,10 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">Benched</a>
+                    <a href="details.html">Inception</a>
                   </h3>
                   <span className="item__category">
-                    <a href="#">Comedy</a>
+                    <a href="#">Action</a>
                   </span>
                 </div>
               </div>
@@ -562,10 +366,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover8.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover8.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }} />
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--red">5.5</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -573,7 +377,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">I Dream in Another Language</a>
+                    <a href="details.html">Interstellar</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Action</a>
@@ -587,10 +391,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover9.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover9.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--yellow">6.7</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -598,10 +402,10 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">Blindspotting</a>
+                    <a href="details.html">Mad Max</a>
                   </h3>
                   <span className="item__category">
-                    <a href="#">Comedy</a>
+                    <a href="#">Action</a>
                     <a href="#">Drama</a>
                   </span>
                 </div>
@@ -612,10 +416,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover10.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover10.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--red">5.6</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -623,7 +427,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">Whitney</a>
+                    <a href="details.html">Daughters of darkness</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Romance</a>
@@ -638,10 +442,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover11.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover11.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--green">9.2</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -649,10 +453,10 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">Benched</a>
+                    <a href="details.html">Triple A</a>
                   </h3>
                   <span className="item__category">
-                    <a href="#">Comedy</a>
+                    <a href="#">Romance</a>
                   </span>
                 </div>
               </div>
@@ -662,10 +466,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover12.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover12.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -673,7 +477,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">I Dream in Another Language</a>
+                    <a href="details.html">Iron Man 3</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Action</a>
@@ -687,10 +491,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover13.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover13.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <Link to="/Seances" className="item__play">
+                    <i className="ti ti-ticket" />
+                  </Link>
                   <span className="item__rate item__rate--green">8.0</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -698,7 +502,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">I Dream in Another Language</a>
+                    <a href="details.html">Harry Potter</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Action</a>
@@ -712,10 +516,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover14.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover14.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }} />
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--green">7.2</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -723,7 +527,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">Benched</a>
+                    <a href="details.html">The Boy</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Comedy</a>
@@ -736,10 +540,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover15.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover15.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <Link to="/Seances" className="item__play">
+                    <i className="ti ti-ticket" />
+                  </Link>
                   <span className="item__rate item__rate--yellow">5.9</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -747,7 +551,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">Whitney</a>
+                    <a href="details.html">Joker</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Romance</a>
@@ -762,10 +566,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover16.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover16.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <Link to="/Seances" className="item__play">
+                    <i className="ti ti-ticket" />
+                  </Link>
                   <span className="item__rate item__rate--green">8.3</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -773,7 +577,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">Blindspotting</a>
+                    <a href="details.html">Alien</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Comedy</a>
@@ -787,10 +591,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover17.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover17.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--green">8.0</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -798,7 +602,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">I Dream in Another Language</a>
+                    <a href="details.html">Fringe</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Action</a>
@@ -812,10 +616,10 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover18.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
+                  <img src="img/covers/cover18.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
                     <i className="ti ti-bookmark" />
@@ -823,7 +627,7 @@ export default function Homepage() {
                 </div>
                 <div className="item__content">
                   <h3 className="item__title">
-                    <a href="details.html">Benched</a>
+                    <a href="details.html">Eyeball</a>
                   </h3>
                   <span className="item__category">
                     <a href="#">Comedy</a>
@@ -832,6 +636,162 @@ export default function Homepage() {
               </div>
             </div>
             {/* end item */}
+             {/* item */}
+ <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
+   <div className="item">
+     <div className="item__cover">
+       <img src="img/covers/cover19.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+        <Link to="/Seances" className="item__play">
+          <i className="ti ti-ticket" />
+        </Link>
+       <span className="item__rate item__rate--yellow">5.9</span>
+       <button className="item__favorite" type="button">
+         <i className="ti ti-bookmark" />
+       </button>
+     </div>
+     <div className="item__content">
+       <h3 className="item__title">
+         <a href="details.html">Avengers</a>
+       </h3>
+       <span className="item__category">
+         <a href="#">Action</a>
+         <a href="#">Drama</a>
+        
+       </span>
+     </div>
+   </div>
+ </div>
+ {/* end item */}
+  {/* item */}
+  <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
+   <div className="item">
+     <div className="item__cover">
+       <img src="img/covers/cover20.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+        <Link to="/Seances" className="item__play">
+          <i className="ti ti-ticket" />
+        </Link>
+       <span className="item__rate item__rate--yellow">5.9</span>
+       <button className="item__favorite" type="button">
+         <i className="ti ti-bookmark" />
+       </button>
+     </div>
+     <div className="item__content">
+       <h3 className="item__title">
+         <a href="details.html">Uncharted</a>
+       </h3>
+       <span className="item__category">
+         <a href="#">Action</a>
+         <a href="#">Drama</a>
+         
+       </span>
+     </div>
+   </div>
+ </div>
+ {/* end item */}
+  {/* item */}
+  <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
+   <div className="item">
+     <div className="item__cover">
+       <img src="img/covers/cover21.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+        <Link to="/Seances" className="item__play">
+          <i className="ti ti-ticket" />
+        </Link>
+       <span className="item__rate item__rate--yellow">5.9</span>
+       <button className="item__favorite" type="button">
+         <i className="ti ti-bookmark" />
+       </button>
+     </div>
+     <div className="item__content">
+       <h3 className="item__title">
+         <a href="details.html">Dune</a>
+       </h3>
+       <span className="item__category">
+         <a href="#">Action</a>
+        
+        
+       </span>
+     </div>
+   </div>
+ </div>
+ {/* end item */}
+  {/* item */}
+  <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
+   <div className="item">
+     <div className="item__cover">
+       <img src="img/covers/cover22.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+       <Link to="/Seances" className="item__play">
+         <i className="ti ti-ticket" />
+       </Link>
+       <span className="item__rate item__rate--yellow">5.9</span>
+       <button className="item__favorite" type="button">
+         <i className="ti ti-bookmark" />
+       </button>
+     </div>
+     <div className="item__content">
+       <h3 className="item__title">
+         <a href="details.html">Killer Game</a>
+       </h3>
+       <span className="item__category">
+         
+         <a href="#">Drama</a>
+         
+       </span>
+     </div>
+   </div>
+ </div>
+ {/* end item */}
+  {/* item */}
+  <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
+   <div className="item">
+     <div className="item__cover">
+       <img src="img/covers/cover23.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+        <Link to="/Seances" className="item__play">
+          <i className="ti ti-ticket" />
+        </Link>
+       <span className="item__rate item__rate--yellow">5.9</span>
+       <button className="item__favorite" type="button">
+         <i className="ti ti-bookmark" />
+       </button>
+     </div>
+     <div className="item__content">
+       <h3 className="item__title">
+         <a href="details.html">Momento</a>
+       </h3>
+       <span className="item__category">
+         <a href="#">Triler</a>
+        
+        
+       </span>
+     </div>
+   </div>
+ </div>
+ {/* end item */}
+  {/* item */}
+  <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
+   <div className="item">
+     <div className="item__cover">
+       <img src="img/covers/cover24.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+        <Link to="/Seances" className="item__play">
+          <i className="ti ti-ticket" />
+        </Link>
+       <span className="item__rate item__rate--yellow">5.9</span>
+       <button className="item__favorite" type="button">
+         <i className="ti ti-bookmark" />
+       </button>
+     </div>
+     <div className="item__content">
+       <h3 className="item__title">
+         <a href="details.html">The Batman</a>
+       </h3>
+       <span className="item__category">
+         <a href="#">Action</a>
+         <a href="#">Drama</a>
+         <a href="#">Romance</a>
+       </span>
+     </div>
+   </div>
+ </div>
+ {/* end item */}
           </div>
         </div>
         <div
@@ -846,9 +806,33 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover6.jpg" alt="" />
+                  <img src="img/covers/cover25.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }} />
+                   <Link to="/Seances" className="item__play">
+                     <i className="ti ti-ticket" />
+                   </Link>
+                  <span className="item__rate item__rate--green">7.1</span>
+                  <button className="item__favorite" type="button">
+                    <i className="ti ti-bookmark" />
+                  </button>
+                </div>
+                <div className="item__content">
+                  <h3 className="item__title">
+                    <a href="details.html">Benched</a>
+                  </h3>
+                  <span className="item__category">
+                    <a href="#">Comedy</a>
+                  </span>
+                </div>
+              </div>
+            </div>
+            {/* end item */}
+            {/* item */}
+            <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
+              <div className="item">
+                <div className="item__cover">
+                  <img src="img/covers/cover26.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }} />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
@@ -870,33 +854,9 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover7.jpg" alt="" />
+                  <img src="img/covers/cover27.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
-                  </a>
-                  <span className="item__rate item__rate--green">7.1</span>
-                  <button className="item__favorite" type="button">
-                    <i className="ti ti-bookmark" />
-                  </button>
-                </div>
-                <div className="item__content">
-                  <h3 className="item__title">
-                    <a href="details.html">Benched</a>
-                  </h3>
-                  <span className="item__category">
-                    <a href="#">Comedy</a>
-                  </span>
-                </div>
-              </div>
-            </div>
-            {/* end item */}
-            {/* item */}
-            <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
-              <div className="item">
-                <div className="item__cover">
-                  <img src="img/covers/cover8.jpg" alt="" />
-                  <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--red">5.5</span>
                   <button className="item__favorite" type="button">
@@ -921,7 +881,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover9.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--yellow">6.7</span>
                   <button className="item__favorite" type="button">
@@ -946,7 +906,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover10.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--red">5.6</span>
                   <button className="item__favorite" type="button">
@@ -972,7 +932,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover11.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">9.2</span>
                   <button className="item__favorite" type="button">
@@ -996,7 +956,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
@@ -1021,7 +981,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover2.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
@@ -1045,7 +1005,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover3.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--red">6.3</span>
                   <button className="item__favorite" type="button">
@@ -1071,7 +1031,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover4.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--yellow">6.9</span>
                   <button className="item__favorite" type="button">
@@ -1096,7 +1056,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover5.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
@@ -1121,7 +1081,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover12.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
@@ -1146,7 +1106,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover13.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.0</span>
                   <button className="item__favorite" type="button">
@@ -1171,7 +1131,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover14.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.2</span>
                   <button className="item__favorite" type="button">
@@ -1195,7 +1155,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover15.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--yellow">5.9</span>
                   <button className="item__favorite" type="button">
@@ -1221,7 +1181,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover16.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.3</span>
                   <button className="item__favorite" type="button">
@@ -1246,7 +1206,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover17.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.0</span>
                   <button className="item__favorite" type="button">
@@ -1271,7 +1231,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover18.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
@@ -1305,7 +1265,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover13.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.0</span>
                   <button className="item__favorite" type="button">
@@ -1330,7 +1290,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover14.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.2</span>
                   <button className="item__favorite" type="button">
@@ -1354,7 +1314,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover15.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--yellow">5.9</span>
                   <button className="item__favorite" type="button">
@@ -1380,7 +1340,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover16.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.3</span>
                   <button className="item__favorite" type="button">
@@ -1405,7 +1365,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover17.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.0</span>
                   <button className="item__favorite" type="button">
@@ -1430,7 +1390,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover18.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
@@ -1454,7 +1414,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
@@ -1479,7 +1439,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover2.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
@@ -1503,7 +1463,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover3.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--red">6.3</span>
                   <button className="item__favorite" type="button">
@@ -1529,7 +1489,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover4.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--yellow">6.9</span>
                   <button className="item__favorite" type="button">
@@ -1554,7 +1514,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover5.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
@@ -1579,7 +1539,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover6.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
@@ -1603,7 +1563,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover7.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
@@ -1627,7 +1587,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover8.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--red">5.5</span>
                   <button className="item__favorite" type="button">
@@ -1652,7 +1612,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover9.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--yellow">6.7</span>
                   <button className="item__favorite" type="button">
@@ -1677,7 +1637,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover10.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--red">5.6</span>
                   <button className="item__favorite" type="button">
@@ -1703,7 +1663,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover11.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">9.2</span>
                   <button className="item__favorite" type="button">
@@ -1727,7 +1687,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover12.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
@@ -1762,7 +1722,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover15.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--yellow">5.9</span>
                   <button className="item__favorite" type="button">
@@ -1788,7 +1748,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover6.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
@@ -1812,7 +1772,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover9.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--yellow">6.7</span>
                   <button className="item__favorite" type="button">
@@ -1837,7 +1797,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover3.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--red">6.3</span>
                   <button className="item__favorite" type="button">
@@ -1863,7 +1823,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover4.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--yellow">6.9</span>
                   <button className="item__favorite" type="button">
@@ -1888,7 +1848,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
@@ -1913,7 +1873,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover5.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
@@ -1938,7 +1898,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover2.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
@@ -1962,7 +1922,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover7.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
@@ -1986,7 +1946,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover8.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--red">5.5</span>
                   <button className="item__favorite" type="button">
@@ -2011,7 +1971,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover10.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--red">5.6</span>
                   <button className="item__favorite" type="button">
@@ -2037,7 +1997,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover11.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">9.2</span>
                   <button className="item__favorite" type="button">
@@ -2061,7 +2021,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover12.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.4</span>
                   <button className="item__favorite" type="button">
@@ -2086,7 +2046,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover13.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.0</span>
                   <button className="item__favorite" type="button">
@@ -2111,7 +2071,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover14.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.2</span>
                   <button className="item__favorite" type="button">
@@ -2135,7 +2095,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover16.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.3</span>
                   <button className="item__favorite" type="button">
@@ -2160,7 +2120,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover17.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">8.0</span>
                   <button className="item__favorite" type="button">
@@ -2185,7 +2145,7 @@ export default function Homepage() {
                 <div className="item__cover">
                   <img src="img/covers/cover18.jpg" alt="" />
                   <a href="details.html" className="item__play">
-                    <i className="ti ti-player-play-filled" />
+                    <i className="ti ti-ticket" />
                   </a>
                   <span className="item__rate item__rate--green">7.1</span>
                   <button className="item__favorite" type="button">
@@ -2210,334 +2170,15 @@ export default function Homepage() {
       <div className="row">
         {/* more */}
         <div className="col-12">
-          <a className="section__more" href="catalog.html">
+          <Link className="section__more" to="/Movies">
             View all
-          </a>
+          </Link>
         </div>
         {/* end more */}
       </div>
     </div>
   </section>
   {/* end content */}
-  {/* section */}
-  <section className="section section--border">
-    <div className="container">
-      <div className="row">
-        {/* section title */}
-        <div className="col-12">
-          <div className="section__title-wrap">
-            <h2 className="section__title">Expected premiere</h2>
-            <a
-              href="catalog.html"
-              className="section__view section__view--carousel"
-            >
-              View All
-            </a>
-          </div>
-        </div>
-        {/* end section title */}
-        {/* carousel */}
-        <div className="col-12">
-          <div className="section__carousel splide splide--content">
-            <div className="splide__arrows">
-              <button
-                className="splide__arrow splide__arrow--prev"
-                type="button"
-              >
-                <i className="ti ti-chevron-left" />
-              </button>
-              <button
-                className="splide__arrow splide__arrow--next"
-                type="button"
-              >
-                <i className="ti ti-chevron-right" />
-              </button>
-            </div>
-            <div className="splide__track">
-              <ul className="splide__list">
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">8.4</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">I Dream in Another Language</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Action</a>
-                        <a href="#">Triler</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover2.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">7.1</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Benched</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover3.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--red">6.3</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Whitney</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Romance</a>
-                        <a href="#">Drama</a>
-                        <a href="#">Music</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover4.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--yellow">6.9</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Blindspotting</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                        <a href="#">Drama</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover5.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">8.4</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">I Dream in Another Language</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Action</a>
-                        <a href="#">Triler</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover6.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">7.1</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Benched</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover7.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">7.1</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Benched</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover8.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--red">5.5</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">I Dream in Another Language</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Action</a>
-                        <a href="#">Triler</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover9.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--yellow">6.7</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Blindspotting</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                        <a href="#">Drama</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover10.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--red">5.6</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Whitney</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Romance</a>
-                        <a href="#">Drama</a>
-                        <a href="#">Music</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover11.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">9.2</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">Benched</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Comedy</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-                <li className="splide__slide">
-                  <div className="item item--carousel">
-                    <div className="item__cover">
-                      <img src="img/covers/cover12.jpg" alt="" />
-                      <a href="details.html" className="item__play">
-                        <i className="ti ti-player-play-filled" />
-                      </a>
-                      <span className="item__rate item__rate--green">8.4</span>
-                      <button className="item__favorite" type="button">
-                        <i className="ti ti-bookmark" />
-                      </button>
-                    </div>
-                    <div className="item__content">
-                      <h3 className="item__title">
-                        <a href="details.html">I Dream in Another Language</a>
-                      </h3>
-                      <span className="item__category">
-                        <a href="#">Action</a>
-                        <a href="#">Triler</a>
-                      </span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        {/* end carousel */}
-      </div>
-    </div>
-  </section>
-  {/* end section */}
   {/* section */}
   <section className="section section--border">
     <div className="container">

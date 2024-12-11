@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navigation from '../components/Navigation';
+import { Link } from 'react-router-dom';
 
 
 
@@ -34,10 +35,10 @@ const Salles = () => {
               <div className="col-12">
                 <div className="header__content">
                      {/* header logo */}
- <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+ <Link to="/" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
  <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
   <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
-  </a>                  
+  </Link>                  
  {/* end header logo */}
                   {/* header nav */}
                   {/* end header nav */}
@@ -98,7 +99,7 @@ const Salles = () => {
                   {/* breadcrumbs */}
                   <ul className="breadcrumbs">
                     <li className="breadcrumbs__item"><a href="index.html">Home</a></li>
-                    <li className="breadcrumbs__item breadcrumbs__item--active">About Us</li>
+                    <li className="breadcrumbs__item breadcrumbs__item--active">Salles</li>
                   </ul>
                   {/* end breadcrumbs */}
                 </div>
