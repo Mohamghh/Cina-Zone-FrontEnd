@@ -1,7 +1,10 @@
-import React from 'react'
+
+import React, { Fragment, useContext } from 'react'
 import { Link } from "react-router-dom";
+import { AuthContext } from "../AuthProvider";
 
 export default function Navigation() {
+  const { roles } = useContext(AuthContext); 
   return (
     
     
@@ -19,17 +22,20 @@ export default function Navigation() {
       </li>
 
 
-      <li className="header__nav-item">
-   <Link className="header__nav-link" to="/Salles">
-     Salles <i className="" />
-   </Link>
-  </li>  
+   {/* Section "Salles" visible uniquement pour admin et superviseur */}
+   {roles.some((role) => ["admin", "superviseur"].includes(role)) && (
+          <li className="header__nav-item">
+            <Link className="header__nav-link" to="/Salles">
+              Salles
+            </Link>
+          </li>
+        )}
 
-   <li className="header__nav-item">
-   <Link className="header__nav-link" to="/Seances">
-     Seances <i className="" />
-   </Link>
- </li>  
+<li className="header__nav-item">
+        <Link className="header__nav-link" to="/Seances">
+          Seances <i className="" />
+        </Link>
+      </li>
  
 
    {/* Link to the Pricing plan page 

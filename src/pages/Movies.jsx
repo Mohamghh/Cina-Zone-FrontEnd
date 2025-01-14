@@ -181,7 +181,7 @@ const Movies = () => {
               <img
                 src={`data:${film.imageType};base64,${film.image}`} // Render the image
                 alt={film.titre}
-                style={{ width: '195px', height: '285px', objectFit: 'cover' }} // Inline styling for consistent image size
+                style={{ width: '166px', height: '246px', objectFit: 'cover' }} // Inline styling for consistent image size
               />
               <Link to="/Seances" className="item__play">
                 <i className="ti ti-ticket" />
@@ -220,39 +220,25 @@ const Movies = () => {
   </div>
   {/* end fixed filter wrap */}
   {/* footer */}
-  <footer className="footer" 
-   style={{
-    position: 'fixed',
-    bottom: 0,
-    width: '100%',
-    textAlign: 'center',
-    padding: '10px 0',
-    zIndex: 1000,
-  }}
-  
-  >
-    <div className="container">
-      <div className="row">
-        <div className="col-12">
-          <div className="footer__content">
-          <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
+  <footer className="footer">
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <div className="footer__content">
+                <a href="index.html" className="header__logo" style={{ textDecoration: 'none', fontSize: '24px', fontFamily: 'Arial, sans-serif' }}>
 <span style={{ color: 'orange', fontWeight: 'bold' }}>CINA</span>
  <span style={{ color: 'white', fontWeight: 'bold' }}> ZONE </span>
  </a>                  
-                       
-            <span className="footer__copyright">
-              © CINAZONE, 2024—2025 <br /> Created by Mohamed - Hamza
-              
-            </span>
-            <button className="footer__back" type="button">
-              <i className="ti ti-arrow-narrow-up" />
-            </button>
+                  <span className="footer__copyright">© CINAZONE, 2024—2025 <br /> Create by Mohamed - Hamza</span>
+                  <button className="footer__back" type="button">
+                    <i className="ti ti-arrow-narrow-up" />
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  {/* end footer */}
+        </footer>
+        {/* end footer */}
   {/* mobile filter */}
   <div className="mfilter">
     <div className="mfilter__head">

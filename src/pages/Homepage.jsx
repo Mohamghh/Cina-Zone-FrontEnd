@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import Navigation from '../components/Navigation'
 import Header from '../components/Header'
 import { Link } from 'react-router-dom';
+import { AuthContext } from "../AuthProvider"
 
 export default function Homepage() {
+  const { logout } = useContext(AuthContext);
   return (
     <>
       <>
@@ -104,11 +106,17 @@ export default function Homepage() {
                     </a>
                   </li>
                   <li>
-                    <a href="#">
-                      <i className="ti ti-logout" />
-                      Logout
-                    </a>
-                  </li>
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault(); // Prevent page reload
+                            logout(); // Call the logout function
+                          }}
+                        >
+                          <i className="ti ti-logout" />
+                          Logout
+                        </a>
+                      </li>
                 </ul>
               </div>
               {/* end dropdown */}
@@ -193,7 +201,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                   <Link to="/Seances" className="item__play">
                     <i className="ti ti-ticket" />
                   </Link>
@@ -218,7 +226,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover2.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover2.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -242,7 +250,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover3.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover3.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -268,7 +276,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover4.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover4.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -293,7 +301,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover5.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover5.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -318,7 +326,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover6.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover6.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -342,7 +350,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover7.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover7.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -366,7 +374,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover8.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }} />
+                  <img src="img/covers/cover8.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }} />
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -391,7 +399,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover9.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover9.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -416,7 +424,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover10.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover10.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -442,7 +450,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover11.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover11.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -466,7 +474,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover12.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover12.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -491,7 +499,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover13.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover13.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                   <Link to="/Seances" className="item__play">
                     <i className="ti ti-ticket" />
                   </Link>
@@ -516,7 +524,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover14.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }} />
+                  <img src="img/covers/cover14.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }} />
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -540,7 +548,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover15.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover15.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                   <Link to="/Seances" className="item__play">
                     <i className="ti ti-ticket" />
                   </Link>
@@ -566,7 +574,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover16.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover16.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                   <Link to="/Seances" className="item__play">
                     <i className="ti ti-ticket" />
                   </Link>
@@ -591,7 +599,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover17.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover17.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -616,7 +624,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover18.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+                  <img src="img/covers/cover18.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -640,7 +648,7 @@ export default function Homepage() {
  <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
    <div className="item">
      <div className="item__cover">
-       <img src="img/covers/cover19.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+       <img src="img/covers/cover19.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
         <Link to="/Seances" className="item__play">
           <i className="ti ti-ticket" />
         </Link>
@@ -666,7 +674,7 @@ export default function Homepage() {
   <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
    <div className="item">
      <div className="item__cover">
-       <img src="img/covers/cover20.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+       <img src="img/covers/cover20.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
         <Link to="/Seances" className="item__play">
           <i className="ti ti-ticket" />
         </Link>
@@ -692,7 +700,7 @@ export default function Homepage() {
   <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
    <div className="item">
      <div className="item__cover">
-       <img src="img/covers/cover21.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+       <img src="img/covers/cover21.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
         <Link to="/Seances" className="item__play">
           <i className="ti ti-ticket" />
         </Link>
@@ -718,7 +726,7 @@ export default function Homepage() {
   <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
    <div className="item">
      <div className="item__cover">
-       <img src="img/covers/cover22.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+       <img src="img/covers/cover22.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
        <Link to="/Seances" className="item__play">
          <i className="ti ti-ticket" />
        </Link>
@@ -744,7 +752,7 @@ export default function Homepage() {
   <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
    <div className="item">
      <div className="item__cover">
-       <img src="img/covers/cover23.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+       <img src="img/covers/cover23.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
         <Link to="/Seances" className="item__play">
           <i className="ti ti-ticket" />
         </Link>
@@ -770,7 +778,7 @@ export default function Homepage() {
   <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
    <div className="item">
      <div className="item__cover">
-       <img src="img/covers/cover24.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }}/>
+       <img src="img/covers/cover24.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }}/>
         <Link to="/Seances" className="item__play">
           <i className="ti ti-ticket" />
         </Link>
@@ -806,7 +814,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover25.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }} />
+                  <img src="img/covers/cover25.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }} />
                    <Link to="/Seances" className="item__play">
                      <i className="ti ti-ticket" />
                    </Link>
@@ -830,7 +838,7 @@ export default function Homepage() {
             <div className="col-6 col-sm-4 col-lg-3 col-xl-2">
               <div className="item">
                 <div className="item__cover">
-                  <img src="img/covers/cover26.jpg" alt="" style={{ width: '195px', height: '285px', objectFit: 'cover' }} />
+                  <img src="img/covers/cover26.jpg" alt="" style={{ width: '166px', height: '246px', objectFit: 'cover' }} />
                   <a href="details.html" className="item__play">
                     <i className="ti ti-ticket" />
                   </a>

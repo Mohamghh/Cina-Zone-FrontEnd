@@ -45,9 +45,24 @@ const Seances = () => {
     };
 
     try {
-      await axios.post('http://localhost:8090/addreservation', reservationData);
+      // Create the reservation by posting data to the server
+      const response = await axios.post('http://localhost:8090/addreservation', reservationData);
+
+      // Pass reservation details along with the amount to the Payment page
+      const reservationDetails = response.data;
+      const amount = selectedSeance.price; // assuming price is part of the seance object
+
       setAlertMessage({ type: 'success', text: 'Réservation confirmée avec succès !' });
-      navigate('/payement');
+
+      // Navigate to the payment page with reservation details and price
+      navigate('/payement', {
+        state: { 
+          reservationDetails, 
+          amount,
+          appName: 'CINA Zone' // App name
+        }
+      });
+
       setShowReservationForm(false);
       setReservationDate('');
     } catch (error) {
@@ -56,9 +71,7 @@ const Seances = () => {
     }
   };
 
-
   return (
-    
 
     <>
      
@@ -174,7 +187,7 @@ const Seances = () => {
                     src={seance.film.image ? `data:${seance.film.imageType};base64,${seance.film.image}` : '/path/to/placeholder.png'}
                     alt={seance.film.titre}
                     className="img-fluid"
-                    style={{ width: '270px', height: '400px', objectFit: 'cover' }}
+                    style={{ width: '270px', height: '320px', objectFit: 'cover' }}
                   />
                   </div>
                 </div>
@@ -393,7 +406,7 @@ const Seances = () => {
         {/* footer */}
         <footer className="footer"
          style={{
-          position: 'fixed',
+          
           bottom: 0,
           width: '100%',
           textAlign: 'center',
