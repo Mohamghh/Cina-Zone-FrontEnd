@@ -1,10 +1,10 @@
 
-import React, { Fragment, useContext } from 'react'
+import React, { useContext } from 'react'
 import { Link } from "react-router-dom";
 import { AuthContext } from "../AuthProvider";
 
 export default function Navigation() {
-  const { roles } = useContext(AuthContext); 
+  const { roles, authenticated } = useContext(AuthContext); 
   return (
     
     
@@ -14,16 +14,22 @@ export default function Navigation() {
           Home <i className="" />
         </Link>
       </li>
+      
+       {/* Si l'utilisateur est authentifié, afficher les éléments conditionnels */}
+       {authenticated && (
+        <>
 
+      {roles.some((role) => ["admin", "superviseur","directeur_général", "client"].includes(role)) && (
       <li className="header__nav-item">
         <Link className="header__nav-link" to="/Movies">
           Movies <i className="" />
         </Link>
       </li>
+      )} 
 
 
    {/* Section "Salles" visible uniquement pour admin et superviseur */}
-   {roles.some((role) => ["admin", "superviseur"].includes(role)) && (
+   {roles.some((role) => ["admin", "superviseur","directeur_général","responsable_salle"].includes(role)) && (
           <li className="header__nav-item">
             <Link className="header__nav-link" to="/Salles">
               Salles
@@ -31,12 +37,20 @@ export default function Navigation() {
           </li>
         )}
 
+
+{roles.some((role) => ["admin", "superviseur","directeur_général", "client"].includes(role)) && (
 <li className="header__nav-item">
         <Link className="header__nav-link" to="/Seances">
           Seances <i className="" />
         </Link>
       </li>
+      )}
+       </>
+       )}
  
+    {/* Si l'utilisateur n'est pas authentifié, afficher un message ou des options publiques */}
+    {!authenticated && (
+        <>
 
    {/* Link to the Pricing plan page 
   <li className="header__nav-item">
@@ -44,6 +58,18 @@ export default function Navigation() {
       Pricing plan
     </a>
   </li> */}
+
+<li className="header__nav-item">
+        <Link className="header__nav-link" to="/Movies">
+          Movies <i className="" />
+        </Link>
+      </li>
+
+<li className="header__nav-item">
+        <Link className="header__nav-link" to="/Seances">
+          Seances <i className="" />
+        </Link>
+      </li>
  
   <li className="header__nav-item">
     <ul className="dropdown-menu header__dropdown-menu">
@@ -73,7 +99,10 @@ export default function Navigation() {
     </ul>
   </li>
 
-  
+
+   </>
+      )}
+ 
  
 </ul>
 

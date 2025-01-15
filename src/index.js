@@ -15,6 +15,9 @@ import Payement from "./pages/Payement";
 import Receipt from "./pages/receipt";
 import { AuthProvider, AuthContext } from "./AuthProvider";
 
+
+
+
 const ProtectedRoute = ({ roles, children }) => {
   const { roles: userRoles } = React.useContext(AuthContext);
 
@@ -37,15 +40,16 @@ const router = createBrowserRouter([
       {
         path: "/Movies",
         element: (
-          <ProtectedRoute roles={["admin", "client", "client_fidele", "superviseur"]}>
+          //<ProtectedRoute roles={["admin", "client", "client_fidele", "superviseur", "directeur_général"]}>
             <Movies />
-          </ProtectedRoute>
+         // </ProtectedRoute>
         ),
       },
+      
       {
         path: "/Salles",
         element: (
-          <ProtectedRoute roles={["admin", "superviseur"]}>
+          <ProtectedRoute roles={["admin", "superviseur","directeur_général","responsable_salle"]}>
             <Salles />
           </ProtectedRoute>
         ),
@@ -69,7 +73,7 @@ const router = createBrowserRouter([
       {
         path: "/AddSalle",
         element: (
-          <ProtectedRoute roles={["admin"]}>
+          <ProtectedRoute roles={["admin","responsable_salle"]}>
             <AddSalle />
           </ProtectedRoute>
         ),
@@ -77,15 +81,15 @@ const router = createBrowserRouter([
       {
         path: "/Seances",
         element: (
-          <ProtectedRoute roles={["admin", "superviseur", "client"]}>
+         // <ProtectedRoute roles={["admin", "superviseur", "client","directeur_général"]}>
             <Seances />
-          </ProtectedRoute>
+         // </ProtectedRoute>
         ),
       },
       {
         path: "/Payement",
         element: (
-          <ProtectedRoute roles={["admin", "client", "client_fidele"]}>
+          <ProtectedRoute roles={["admin", "client", "client_fidele","directeur_général"]}>
             <Payement />
           </ProtectedRoute>
         ),
@@ -93,7 +97,7 @@ const router = createBrowserRouter([
       {
         path: "/Receipt",
         element: (
-          <ProtectedRoute roles={["admin", "client", "client_fidele"]}>
+          <ProtectedRoute roles={["admin", "client", "client_fidele","directeur_général"]}>
             <Receipt />
           </ProtectedRoute>
         ),

@@ -4,8 +4,11 @@ import Header from '../components/Header'
 import { Link } from 'react-router-dom';
 import { AuthContext } from "../AuthProvider"
 
+
 export default function Homepage() {
+  const { keycloak, login, register, authenticated } = useContext(AuthContext);
   const { logout } = useContext(AuthContext);
+  const username = authenticated ? keycloak.tokenParsed?.preferred_username || "Utilisateur" : null; // Récupère le nom d'utilisateur ou un fallback
   return (
     <>
       <>
@@ -78,21 +81,41 @@ export default function Homepage() {
                   aria-expanded="false"
                 >
                   <i className="ti ti-user" />
-                  <span>Nickname</span>
+                  <span>
+        {authenticated ? `${username}` : "S'inscrire"}
+      </span>
                 </a>
                 <ul className="dropdown-menu dropdown-menu-end header__dropdown-menu header__dropdown-menu--user">
-                  <li>
-                    <a href="profile.html">
-                      <i className="ti ti-ghost" />
-                      Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a href="profile.html">
-                      <i className="ti ti-stereo-glasses" />
-                      Subscription
-                    </a>
-                  </li>
+
+                {!authenticated && (  
+                <li>
+                <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      login();
+                    }}
+  >
+                    <i className="ti ti-login" />
+                       Login
+                       </a>
+                      </li>
+                      )}
+
+                      {!authenticated && (
+                      <li>
+                      <a
+                         href="#"
+                         onClick={(e) => {
+                         e.preventDefault();
+                           register();
+                          }}
+  >
+                           <i className="ti ti-user" />
+                               Register
+                                </a>
+                          </li>
+                          )}
                   <li>
                     <a href="profile.html">
                       <i className="ti ti-bookmark" />
@@ -105,6 +128,7 @@ export default function Homepage() {
                       Settings
                     </a>
                   </li>
+                  {authenticated && (
                   <li>
                         <a
                           href="#"
@@ -117,6 +141,7 @@ export default function Homepage() {
                           Logout
                         </a>
                       </li>
+                       )}
                 </ul>
               </div>
               {/* end dropdown */}

@@ -10,11 +10,7 @@ import { AuthContext } from "./AuthProvider";
 const stripePromise = loadStripe("pk_test_51QQxyrAwRzCvsPAUKkNggCYLRVJ6jjCk3giZDutzokRpt4qssx81ZuvF2KPa6RuGVAKzqT5xzddhPgAymNqdk7dF00fMDMp89m");
 
 function App() {
-  const { authenticated } = useContext(AuthContext); // Utilisation du contexte d'authentification
-
-  if (!authenticated) {
-    return <div style={{ textAlign: "center", marginTop: "50px" }}>Authenticating...</div>;
-  }
+  
 
   return (
     <div>

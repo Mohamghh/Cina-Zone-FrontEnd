@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import Keycloak from "keycloak-js";
 
+
 // Configuration de Keycloak
 const keycloak = new Keycloak({
   url: "http://localhost:8080", // URL du serveur Keycloak
@@ -14,10 +15,11 @@ export const AuthProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
   const [keycloakInstance, setKeycloakInstance] = useState(null);
   const [roles, setRoles] = useState([]);
+  
 
   useEffect(() => {
     keycloak
-      .init({ onLoad: "login-required" }) // Force l'utilisateur à se connecter
+      .init({ onLoad: "check-sso" }) // Vérifie si l'utilisateur est connecté sans forcer la connexion
       .then((auth) => {
         setAuthenticated(auth);
         setKeycloakInstance(keycloak);
@@ -31,11 +33,28 @@ export const AuthProvider = ({ children }) => {
           const userRoles = keycloak.realmAccess?.roles || [];
           setRoles(userRoles);
         } else {
-          console.log("Keycloak authentication failed.");
+          console.log("User is not authenticated.");
         }
       })
       .catch((err) => console.error("Keycloak init error:", err));
   }, []);
+
+  const login = () => {
+    if (keycloak) {
+      keycloak.login(); // Redirige vers la page de connexion Keycloak
+    }
+  };
+
+  const register = () => {
+    if (keycloak) {
+      keycloak.register(); // Redirige vers la page d'inscription Keycloak
+      // Après l'inscription, on redirige vers la page de login Keycloak
+      keycloak.onAuthSuccess = () => {
+        window.location.href = `http://localhost:8080/realms/cinazone/protocol/openid-connect/auth?client_id=client-frontend&response_type=code&scope=openid&redirect_uri=http://localhost:3000/callback
+`; // Redirection vers la page de connexion
+      };
+    }
+  };
 
   const logout = () => {
     if (keycloak) {
@@ -45,16 +64,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  if (!authenticated) {
-    return <div style={{ textAlign: "center", marginTop: "50px" }}>Authenticating...</div>;
-  }
-
   return (
     <AuthContext.Provider
       value={{
         authenticated,            // Statut d'authentification
         keycloak: keycloakInstance, // Instance Keycloak
         roles,                    // Rôles de l'utilisateur
+        login,                    // Méthode pour se connecter
+        register,                 // Méthode pour s'inscrire
         logout,                   // Méthode pour déconnecter
       }}
     >
