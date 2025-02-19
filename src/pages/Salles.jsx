@@ -1,13 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Navigation from '../components/Navigation';
 import { Link } from 'react-router-dom';
+import { AuthContext } from "../AuthProvider"
+
 
 
 
 
 const Salles = () => {
   const [salles, setSalles] = useState([]);
+  const { keycloak, login, register, authenticated } = useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
+    const isClient = keycloak?.hasRealmRole("client");
+    const isSuperviseur = keycloak?.hasRealmRole("superviseur");
+  
+    const username = authenticated ? keycloak.tokenParsed?.preferred_username || "Utilisateur" : null; // Récupère le nom d'utilisateur ou un fallback
 
   // Fetch salles from the backend
   const fetchSalles = async () => {
@@ -68,11 +76,76 @@ const Salles = () => {
                       </ul>
                     </div>
                     {/* end dropdown */}
-                    <a href="signin.html" className="header__sign-in">
-                      <i className="ti ti-login" />
-                      <span>sign in</span>
+                     {/* dropdown */}
+              <div className="header__profile">
+                <a
+                  className="header__sign-in header__sign-in--user"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="ti ti-user" />
+                  <span>
+        {authenticated ? `${username}` : "S'inscrire"}
+      </span>
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end header__dropdown-menu header__dropdown-menu--user">
+
+                {!authenticated && (  
+                <li>
+                <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      login();
+                    }}
+  >
+                    <i className="ti ti-login" />
+                       Login
+                       </a>
+                      </li>
+                      )}
+
+                      {!authenticated && (
+                      <li>
+                      <a
+                         href="#"
+                         onClick={(e) => {
+                         e.preventDefault();
+                           register();
+                          }}
+  >
+                           <i className="ti ti-user" />
+                               Register
+                                </a>
+                          </li>
+                          )}
+                 
+                  <li>
+                    <a href="profile.html">
+                      <i className="ti ti-settings" />
+                      Settings
                     </a>
-                  </div>
+                  </li>
+                  {authenticated && (
+                  <li>
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault(); // Prevent page reload
+                            logout(); // Call the logout function
+                          }}
+                        >
+                          <i className="ti ti-logout" />
+                          Logout
+                        </a>
+                      </li>
+                       )}
+                </ul>
+              </div>
+              {/* end dropdown */}
+            </div>
                   {/* end header auth */}
                   {/* header menu btn */}
                   <button className="header__btn" type="button">
@@ -87,27 +160,103 @@ const Salles = () => {
           </div>
         </header>
         {/* end header */}
-        {/* page title */}
-        <section className="section section--first">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <div className="section__wrap">
-                  {/* section title */}
-                  <h1 className="section__title section__title--head">Salles</h1>
-                  {/* end section title */}
-                  {/* breadcrumbs */}
-                  <ul className="breadcrumbs">
-                    <li className="breadcrumbs__item"><a href="index.html">Home</a></li>
-                    <li className="breadcrumbs__item breadcrumbs__item--active">Salles</li>
-                  </ul>
-                  {/* end breadcrumbs */}
+         {/* page title */}
+          <section className="section section--first">
+              <div className="container">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="section__wrap">
+                    <div>
+          <style>
+            {`
+              .section__title {
+                margin-bottom: 10px; /* Espace entre le titre et les breadcrumbs */
+                text-align: left; /* Aligne le titre à gauche */
+                font-size: 24px; /* Taille du titre */
+                font-weight: bold;
+              }
+        
+              .breadcrumbs {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                text-align: left; /* Aligne les breadcrumbs à gauche */
+                font-size: 14px; /* Taille du texte des breadcrumbs */
+                color: #555; /* Couleur par défaut des breadcrumbs */
+              }
+        
+              .breadcrumbs__item {
+                display: inline; /* Affiche les éléments en ligne */
+              }
+        
+              .breadcrumbs__item a {
+                text-decoration: none; /* Enlève le soulignement des liens */
+                color: orange; /* Couleur pour "Home" */
+                font-weight: bold; /* Met "Home" en gras */
+              }
+        
+              .breadcrumbs__item a:hover {
+                text-decoration: underline; /* Soulignement au survol */
+              }
+        
+              .breadcrumbs__item--active {
+                color: #555; /* Couleur de l'élément actif */
+                font-weight: bold; /* Met l'élément actif en gras */
+              }
+        
+              .breadcrumbs__separator {
+                margin: 0 5px; /* Espace autour du séparateur */
+                color: #555; /* Couleur du séparateur */
+              }
+            `}
+          </style>
+        
+          {/* section title */}
+          <h1 className="section__title section__title--head">Salles</h1>
+          {/* breadcrumbs */}
+          <ul className="breadcrumbs">
+            <li className="breadcrumbs__item">
+              <Link to="/">Home</Link> 
+            </li>
+            <span className="breadcrumbs__separator"></span>
+            <li className="breadcrumbs__item breadcrumbs__item--active">Salles</li>
+          </ul>
+          {/* end breadcrumbs */}
+        </div>
+                      {/* Add Film Button */}
+                      <div style={{ marginTop: "10px" }}>
+                        <Link
+                          to="/AddSalle"
+                          style={{
+                            textDecoration: "none",
+                          }}
+                        >
+                          <>
+      {authenticated && !isClient && !isSuperviseur && (
+        <button
+          style={{
+            backgroundColor: "orange",
+            color: "white",
+            border: "none",
+            padding: "10px 20px",
+            fontSize: "16px",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Ajouter Salle
+        </button>
+      )}
+    </>
+                        </Link>
+                      </div>
+                      {/* end Add Film Button */}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-        {/* end page title */}
+            </section>
+          {/* end page title */}
         {/* about */}
         <section className="section">
           <div className="container">

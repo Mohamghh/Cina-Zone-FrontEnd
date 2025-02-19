@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navigation from '../components/Navigation';
 import { Link } from 'react-router-dom';
+import { AuthContext } from "../AuthProvider"
+
 
 const Seances = () => {
   const [seances, setSeances] = useState([]);
@@ -10,6 +12,12 @@ const Seances = () => {
   const [showReservationForm, setShowReservationForm] = useState(false);
   const [reservationDate, setReservationDate] = useState('');
   const [alertMessage, setAlertMessage] = useState(null);
+  const { keycloak, login, register, authenticated } = useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
+    const isClient = keycloak?.hasRealmRole("client");
+    const isRespoSalle = keycloak?.hasRealmRole("responsable_salle");
+    const isSuperviseur = keycloak?.hasRealmRole("superviseur");
+    const username = authenticated ? keycloak.tokenParsed?.preferred_username || "Utilisateur" : null; // Récupère le nom d'utilisateur ou un fallback
 
   const navigate = useNavigate();
 
@@ -33,6 +41,7 @@ const Seances = () => {
 
   const handleSubmitReservation = async (e) => {
     e.preventDefault();
+    
 
     if (!reservationDate) {
       setAlertMessage({ type: 'error', text: 'Veuillez sélectionner une date.' });
@@ -50,7 +59,7 @@ const Seances = () => {
 
       // Pass reservation details along with the amount to the Payment page
       const reservationDetails = response.data;
-      const amount = selectedSeance.price; // assuming price is part of the seance object
+      const amount = selectedSeance.film.prix; // assuming price is part of the seance object
 
       setAlertMessage({ type: 'success', text: 'Réservation confirmée avec succès !' });
 
@@ -116,11 +125,76 @@ const Seances = () => {
                       </ul>
                     </div>
                     {/* end dropdown */}
-                    <a href="signin.html" className="header__sign-in">
-                      <i className="ti ti-login" />
-                      <span>sign in</span>
+                   {/* dropdown */}
+               <div className="header__profile">
+                <a
+                  className="header__sign-in header__sign-in--user"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="ti ti-user" />
+                  <span>
+        {authenticated ? `${username}` : "S'inscrire"}
+      </span>
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end header__dropdown-menu header__dropdown-menu--user">
+
+                {!authenticated && (  
+                <li>
+                <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      login();
+                    }}
+  >
+                    <i className="ti ti-login" />
+                       Login
+                       </a>
+                      </li>
+                      )}
+
+                      {!authenticated && (
+                      <li>
+                      <a
+                         href="#"
+                         onClick={(e) => {
+                         e.preventDefault();
+                           register();
+                          }}
+  >
+                           <i className="ti ti-user" />
+                               Register
+                                </a>
+                          </li>
+                          )}
+                 
+                  <li>
+                    <a href="profile.html">
+                      <i className="ti ti-settings" />
+                      Settings
                     </a>
-                  </div>
+                  </li>
+                  {authenticated && (
+                  <li>
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault(); // Prevent page reload
+                            logout(); // Call the logout function
+                          }}
+                        >
+                          <i className="ti ti-logout" />
+                          Logout
+                        </a>
+                      </li>
+                       )}
+                </ul>
+              </div>
+              {/* end dropdown */}
+              </div>
                   {/* end header auth */}
                   {/* header menu btn */}
                   <button className="header__btn" type="button">
@@ -136,30 +210,102 @@ const Seances = () => {
         </header>
         {/* end header */}
         {/* page title */}
-<section className="section section--first">
-  <div className="container">
-    <div className="row">
-      <div className="col-12">
-        <div className="section__wrap">
-          {/* section title */}
-          <h1 className="section__title section__title--head">Seances</h1>
-          {/* end section title */}
-          {/* breadcrumbs */}
-          <ul className="breadcrumbs">
-            <li className="breadcrumbs__item">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="breadcrumbs__item breadcrumbs__item--active">
-              Seances
-            </li>
-          </ul>
-          {/* end breadcrumbs */}
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-{/* end page title */}
+         <section className="section section--first">
+             <div className="container">
+               <div className="row">
+                 <div className="col-12">
+                   <div className="section__wrap">
+                   <div>
+         <style>
+           {`
+             .section__title {
+               margin-bottom: 10px; /* Espace entre le titre et les breadcrumbs */
+               text-align: left; /* Aligne le titre à gauche */
+               font-size: 24px; /* Taille du titre */
+               font-weight: bold;
+             }
+       
+             .breadcrumbs {
+               margin: 0;
+               padding: 0;
+               list-style: none;
+               text-align: left; /* Aligne les breadcrumbs à gauche */
+               font-size: 14px; /* Taille du texte des breadcrumbs */
+               color: #555; /* Couleur par défaut des breadcrumbs */
+             }
+       
+             .breadcrumbs__item {
+               display: inline; /* Affiche les éléments en ligne */
+             }
+       
+             .breadcrumbs__item a {
+               text-decoration: none; /* Enlève le soulignement des liens */
+               color: orange; /* Couleur pour "Home" */
+               font-weight: bold; /* Met "Home" en gras */
+             }
+       
+             .breadcrumbs__item a:hover {
+               text-decoration: underline; /* Soulignement au survol */
+             }
+       
+             .breadcrumbs__item--active {
+               color: #555; /* Couleur de l'élément actif */
+               font-weight: bold; /* Met l'élément actif en gras */
+             }
+       
+             .breadcrumbs__separator {
+               margin: 0 5px; /* Espace autour du séparateur */
+               color: #555; /* Couleur du séparateur */
+             }
+           `}
+         </style>
+       
+         {/* section title */}
+         <h1 className="section__title section__title--head">Seances</h1>
+         {/* breadcrumbs */}
+         <ul className="breadcrumbs">
+           <li className="breadcrumbs__item">
+             <Link to="/">Home</Link> 
+           </li>
+           <span className="breadcrumbs__separator"></span>
+           <li className="breadcrumbs__item breadcrumbs__item--active">Seances</li>
+         </ul>
+         {/* end breadcrumbs */}
+       </div>
+                     {/* Add Film Button */}
+                     <div style={{ marginTop: "10px" }}>
+                       <Link
+                         to="/AddSeance"
+                         style={{
+                           textDecoration: "none",
+                         }}
+                       >
+                         <>
+      {authenticated && !isClient && !isRespoSalle && !isSuperviseur && (
+        <button
+          style={{
+            backgroundColor: "orange",
+            color: "white",
+            border: "none",
+            padding: "10px 20px",
+            fontSize: "16px",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          Ajouter Seance
+        </button>
+      )}
+    </>
+                       </Link>
+                     </div>
+                     {/* end Add Film Button */}
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </section>
+         {/* end page title */}
         <section className="section section--details">
   {/* details background */}
   <div className="section__details-bg" data-bg="img/bg/actor__bg.jpg"></div>

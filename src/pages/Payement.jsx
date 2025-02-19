@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import React, { useState, useEffect } from "react";
+import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
 import axios from "axios";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from "react-router-dom";
@@ -8,13 +8,20 @@ const Payement = () => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
-  const location = useLocation();  // Use the location hook to get the state passed from Seances.jsx
-  const { reservationDetails } = location.state || {};  // Get reservation details from state
+  const location = useLocation();  // Utiliser le hook location pour obtenir l'état passé depuis Seances.jsx
+  const { reservationDetails, amount } = location.state || {};  // Obtenir les détails de la réservation et le montant
 
-  const [amount, setAmount] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState("");
   const [showReceiptOption, setShowReceiptOption] = useState(false);
+
+  const [paymentAmount, setPaymentAmount] = useState(amount);
+
+  useEffect(() => {
+    if (amount) {
+      setPaymentAmount(amount); // Mettre à jour l'état avec le montant passé
+    }
+  }, [amount]);
 
   const handlePayment = async (e) => {
     e.preventDefault();
@@ -30,14 +37,14 @@ const Payement = () => {
       const response = await axios.post(
         "http://localhost:8090/payment/create-payment-intent",
         null,
-        { params: { amount } }
+        { params: { amount: paymentAmount } }
       );
 
       const clientSecret = response.data;
 
       const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-          card: elements.getElement(CardElement),
+          card: elements.getElement(CardNumberElement),
         },
       });
 
@@ -45,7 +52,7 @@ const Payement = () => {
         setMessage(`Erreur : ${error.message}`);
       } else if (paymentIntent) {
         setMessage("Paiement réussi !");
-        setShowReceiptOption(true); // Show the receipt option after payment is successful
+        setShowReceiptOption(true); // Afficher l'option de reçu après un paiement réussi
       }
     } catch (err) {
       setMessage(`Erreur lors du traitement : ${err.message}`);
@@ -58,16 +65,16 @@ const Payement = () => {
     navigate("/receipt", {
       state: {
         reservationDetails,
-        amount,
+        amount: paymentAmount,
         appName: "CINA ZONE",
       },
     });
   };
 
-  const cardElementOptions = {
+  const cardElementStyle = {
     style: {
       base: {
-        color: "#32325d",
+        color: "white",
         fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
         fontSmoothing: "antialiased",
         fontSize: "16px",
@@ -97,18 +104,47 @@ const Payement = () => {
                 <div className="sign__group">
                   <input
                     type="number"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
+                    value={paymentAmount}
+                    onChange={(e) => setPaymentAmount(e.target.value)}
                     className="sign__input"
                     placeholder="Montant (MAD)"
                     required
                   />
                 </div>
 
+                {/* Champ 1 : Numéro de carte + Expiration */}
                 <div className="sign__group">
-                  <div className="sign__input">
-                    <CardElement options={cardElementOptions} />
+                  <div className="sign__input" style={{ padding: '10px', backgroundColor: '#222028', borderRadius: '4px' }}>
+                    <CardNumberElement options={cardElementStyle} />
                   </div>
+                </div>
+
+                <div className="sign__group">
+                  <div className="sign__input" style={{ padding: '10px', backgroundColor: '#222028', borderRadius: '4px' }}>
+                    <CardExpiryElement options={cardElementStyle} />
+                  </div>
+                </div>
+
+                {/* Champ 2 : CVC + Code Postal */}
+                <div className="sign__group">
+                  <div className="sign__input" style={{ padding: '10px', backgroundColor: '#222028', borderRadius: '4px' }}>
+                    <CardCvcElement options={cardElementStyle} />
+                  </div>
+                </div>
+                <div className="sign__group">
+                  <input
+                    type="text"
+                    placeholder="Code Postal"
+                    style={{
+                      padding: "10px",
+                      backgroundColor: "#222028",
+                      borderRadius: "4px",
+                      color: "white",
+                      fontSize: "16px",
+                      border: "none",
+                      width: "100%",
+                    }}
+                  />
                 </div>
 
                 <div className="sign__group sign__group--checkbox">

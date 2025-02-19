@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import Navigation from "../components/Navigation";
 import { Link } from 'react-router-dom';
+import { AuthContext } from "../AuthProvider"
 
 const AddFilm = () => {
   // Define state variables for form fields
@@ -12,6 +13,9 @@ const AddFilm = () => {
   const [imageFile, setImageFile] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { keycloak, login, register, authenticated } = useContext(AuthContext);
+      const { logout } = useContext(AuthContext);
+      const username = authenticated ? keycloak.tokenParsed?.preferred_username || "Utilisateur" : null; // Récupère le nom d'utilisateur ou un fallback
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -127,11 +131,76 @@ const AddFilm = () => {
                 </ul>
               </div>
               {/* end dropdown */}
-              <a href="signin.html" className="header__sign-in">
-                <i className="ti ti-login" />
-                <span>sign in</span>
-              </a>
-            </div>
+               {/* dropdown */}
+               <div className="header__profile">
+                <a
+                  className="header__sign-in header__sign-in--user"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="ti ti-user" />
+                  <span>
+        {authenticated ? `${username}` : "S'inscrire"}
+      </span>
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end header__dropdown-menu header__dropdown-menu--user">
+
+                {!authenticated && (  
+                <li>
+                <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      login();
+                    }}
+  >
+                    <i className="ti ti-login" />
+                       Login
+                       </a>
+                      </li>
+                      )}
+
+                      {!authenticated && (
+                      <li>
+                      <a
+                         href="#"
+                         onClick={(e) => {
+                         e.preventDefault();
+                           register();
+                          }}
+  >
+                           <i className="ti ti-user" />
+                               Register
+                                </a>
+                          </li>
+                          )}
+                  
+                  <li>
+                    <a href="profile.html">
+                      <i className="ti ti-settings" />
+                      Settings
+                    </a>
+                  </li>
+                  {authenticated && (
+                  <li>
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault(); // Prevent page reload
+                            logout(); // Call the logout function
+                          }}
+                        >
+                          <i className="ti ti-logout" />
+                          Logout
+                        </a>
+                      </li>
+                       )}
+                </ul>
+              </div>
+              {/* end dropdown */}
+              </div>
             {/* end header auth */}
             {/* header menu btn */}
             <button className="header__btn" type="button">
@@ -158,7 +227,7 @@ const AddFilm = () => {
             {/* breadcrumbs */}
             <ul className="breadcrumbs">
               <li className="breadcrumbs__item">
-                <a href="index.html">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li className="breadcrumbs__item breadcrumbs__item--active">
               Film

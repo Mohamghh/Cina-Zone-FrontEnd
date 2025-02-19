@@ -116,12 +116,7 @@ export default function Homepage() {
                                 </a>
                           </li>
                           )}
-                  <li>
-                    <a href="profile.html">
-                      <i className="ti ti-bookmark" />
-                      Favorites
-                    </a>
-                  </li>
+              
                   <li>
                     <a href="profile.html">
                       <i className="ti ti-settings" />

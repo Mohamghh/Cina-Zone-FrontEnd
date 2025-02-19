@@ -5,7 +5,7 @@ import Keycloak from "keycloak-js";
 // Configuration de Keycloak
 const keycloak = new Keycloak({
   url: "http://localhost:8080", // URL du serveur Keycloak
-  realm: "cinazone",           // Nom du Realm
+  realm: "cinemazone",           // Nom du Realm
   clientId: "client-frontend", // ID du client
 });
 
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
       keycloak.register(); // Redirige vers la page d'inscription Keycloak
       // Après l'inscription, on redirige vers la page de login Keycloak
       keycloak.onAuthSuccess = () => {
-        window.location.href = `http://localhost:8080/realms/cinazone/protocol/openid-connect/auth?client_id=client-frontend&response_type=code&scope=openid&redirect_uri=http://localhost:3000/callback
+        window.location.href = `http://localhost:8080/realms/cinemazone/protocol/openid-connect/auth?client_id=client-frontend&response_type=code&scope=openid&redirect_uri=http://localhost:3000/callback
 `; // Redirection vers la page de connexion
       };
     }

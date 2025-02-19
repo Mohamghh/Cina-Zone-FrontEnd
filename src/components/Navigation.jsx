@@ -26,6 +26,7 @@ export default function Navigation() {
         </Link>
       </li>
       )} 
+      
 
 
    {/* Section "Salles" visible uniquement pour admin et superviseur */}
@@ -33,6 +34,15 @@ export default function Navigation() {
           <li className="header__nav-item">
             <Link className="header__nav-link" to="/Salles">
               Salles
+            </Link>
+          </li>
+        )}
+
+        {/* Section "Salles" visible uniquement pour admin et superviseur */}
+   {roles.some((role) => [ "directeur_général"].includes(role)) && (
+          <li className="header__nav-item">
+            <Link className="header__nav-link" to="/Statistiques">
+              Statistiques
             </Link>
           </li>
         )}
@@ -47,6 +57,7 @@ export default function Navigation() {
       )}
        </>
        )}
+       
  
     {/* Si l'utilisateur n'est pas authentifié, afficher un message ou des options publiques */}
     {!authenticated && (

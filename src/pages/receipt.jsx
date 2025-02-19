@@ -1,205 +1,181 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 
 const Receipt = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { reservationDetails, amount, appName } = location.state || {};
+  const { reservationDetails, amount } = location.state || {};
+
+  // Format the date as YYYY-MM-DD
+  const formattedDate = new Date(reservationDetails?.date_reservation).toLocaleDateString("en-CA");
 
   const downloadPDF = () => {
     const doc = new jsPDF();
 
-    doc.setFontSize(18);
-    doc.text("Reçu de Paiement", 20, 20);
+    // En-tête avec dégradé de couleur
+    doc.setFillColor(245, 201, 0); // Jaune
+    doc.rect(0, 0, 210, 30, "F"); // Rectangle jaune
+    doc.setFillColor(0, 0, 0); // Noir
+    doc.rect(0, 30, 210, 10, "F"); // Rectangle noir
+    doc.setFontSize(22);
+    doc.setTextColor(255, 255, 255); // Texte blanc
+    doc.text("CINAZONE", 105, 20, { align: "center" });
 
+    // Message de remerciement
     doc.setFontSize(14);
-    doc.text(`Film: ${reservationDetails?.seance.film.titre}`, 20, 40);
-    doc.text(`Salle: ${reservationDetails?.seance.salle.numeroSalle}`, 20, 50);
-    doc.text(`Date de réservation: ${reservationDetails?.date_reservation}`, 20, 60);
+    doc.setTextColor(0, 0, 0); // Texte noir
+    doc.text("Merci pour votre confiance !", 20, 50);
+    doc.setFontSize(12);
     doc.text(
-      `Horaires: ${reservationDetails?.seance.heureDebut} - ${reservationDetails?.seance.heureFin}`,
+      "Nous vous remercions d'avoir choisi CINAZONE pour votre réservation. Votre soutien nous permet de continuer à vous offrir les meilleures expériences cinématographiques.",
       20,
-      70
+      60,
+      { maxWidth: 170 }
     );
 
-    doc.text(`Montant du Paiement: ${amount} MAD`, 20, 90);
-    doc.text(`Application: ${appName}`, 20, 100);
+    // Détails sous forme de tableau
+    const details = [
+      ["Film", reservationDetails?.seance.film.titre || "N/A"],
+      ["Salle", reservationDetails?.seance.salle.numeroSalle || "N/A"],
+      ["Date de réservation", formattedDate || "N/A"],
+      [
+        "Horaires",
+        `${reservationDetails?.seance.heureDebut || "N/A"} - ${
+          reservationDetails?.seance.heureFin || "N/A"
+        }`,
+      ],
+      ["Montant", `${amount} MAD` || "N/A"],
+    ];
 
+    doc.autoTable({
+      startY: 85, // Démarrer après le message de remerciement
+      head: [["Détail", "Information"]],
+      body: details,
+      theme: "striped", // Thème du tableau
+      headStyles: { fillColor: [245, 201, 0] }, // Couleur jaune pour l'en-tête du tableau
+      alternateRowStyles: { fillColor: [245, 245, 245] }, // Couleur grise pour les lignes alternées
+      styles: { textColor: [0, 0, 0] }, // Texte noir
+    });
+
+    // Ajouter le texte du footer après le tableau
+    doc.setFontSize(10);
+    doc.text("© CINAZONE, 2024—2025 | Créé par   Hamza - Mohamed ", 105, doc.lastAutoTable.finalY + 10, { align: "center" });
+
+    // Sauvegarder le PDF
     doc.save("receipt.pdf");
   };
 
   return (
-    <div className="ticket-container">
+    <div className="receipt-container">
       <style>
         {`
-          .ticket-container {
+          .receipt-container {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #ffffff;  /* Fond blanc pour la page */
           }
 
-          .cardWrap {
-            width: 30em;
-            color: #fff;
-            font-family: sans-serif;
-            position: relative;
-          }
-
-          .card {
-            background: linear-gradient(to bottom, #e84c3d 0%, #e84c3d 26%, #ecedef 26%, #ecedef 100%);
-            height: 12em;
-            position: relative;
-            padding: 1em;
+          .receipt-card {
+            width: 300px;  /* Taille fixe pour la carte */
+            padding: 20px;
+            background-color: #ffffff;  /* Fond blanc pour la carte */
             border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-          }
-
-          .cardLeft {
-            width: 70%;
-            float: left;
-          }
-
-          .cardRight {
-            width: 25%;
-            float: right;
-            border-left: 0.18em dashed #fff;
-            border-radius: 0 10px 10px 0;
-          }
-
-          .cardRight:before,
-          .cardRight:after {
-            content: "";
-            position: absolute;
-            display: block;
-            width: 1em;
-            height: 1em;
-            background: #fff;
-            border-radius: 50%;
-            left: -0.5em;
-          }
-
-          .cardRight:before {
-            top: -0.5em;
-          }
-
-          .cardRight:after {
-            bottom: -0.5em;
-          }
-
-          h1 {
-            font-size: 1.2em;
-            margin: 0 0 0.5em 0;
-            font-weight: normal;
-          }
-
-          h1 span {
-            font-weight: lighter;
-          }
-
-          .info {
-            margin-bottom: 0.5em;
-          }
-
-          .info h2 {
-            font-size: 0.9em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
             color: #333;
-            margin: 0;
-            font-weight: normal;
           }
 
-          .info span {
-            font-size: 0.7em;
-            color: #888;
+          .receipt-card h1 {
+            font-size: 1.5em;  
+            text-align: center;
+            color: black;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #f5c900, #f5b300);
+            -webkit-background-clip: text;
+            background-clip: text;
           }
 
-          .eye {
-            position: relative;
-            width: 2.5em;
-            height: 1.5em;
-            background: #fff;
-            margin: 1em auto;
-            border-radius: 50%;
+          .receipt-info {
+            margin: 1em 0;
+            padding-bottom: 1em;
+            border-bottom: 1px solid #ddd;
           }
 
-          .eye:before {
-            content: "";
-            width: 1em;
-            height: 1em;
-            background: #e84c3d;
-            position: absolute;
-            top: 25%;
-            left: 25%;
-            border-radius: 50%;
+          .receipt-info h2 {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: black;
           }
 
-          .barcode {
-            height: 2em;
-            margin-top: 1em;
-            background: repeating-linear-gradient(
-              to right,
-              #343434,
-              #343434 2px,
-              #fff 2px,
-              #fff 4px
-            );
+          .receipt-info span {
+            font-size: 1em;
+            color: #555;
           }
 
           .actions {
-            text-align: center;
-            margin-top: 2em;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5em;
           }
 
           .actions button {
-            padding: 0.5em 1.5em;
-            background: #e84c3d;
-            color: #fff;
+            padding: 0.6em 1.5em;
+            background-color: #f5c900; /* Jaune */
+            color: black;
             border: none;
             border-radius: 5px;
-            margin: 0 0.5em;
+            font-size: 0.9em;
             cursor: pointer;
             transition: background 0.3s ease;
           }
 
           .actions button:hover {
-            background: #c0392b;
+            background-color: #f5b300;
+          }
+
+          .actions button:active {
+            background-color: #f39c12;
+          }
+
+          .actions .back-button {
+            background-color: #333; /* Noir */
+            color: white;
+          }
+
+          .actions .back-button:hover {
+            background-color: #444;
           }
         `}
       </style>
-      <div className="cardWrap">
-        <div className="card cardLeft">
-          <h1>CINAZONE <span>Cinema</span></h1>
-          <div className="info">
-            <h2>{reservationDetails?.seance.film.titre || "N/A"}</h2>
-            <span>Movie</span>
-          </div>
-          <div className="info">
-            <h2>{appName || "N/A"}</h2>
-            <span>Application</span>
-          </div>
-          <div className="info">
-            <h2>{reservationDetails?.seance.salle.numeroSalle || "N/A"}</h2>
-            <span>Seat</span>
-          </div>
-          <div className="info">
-            <h2>{`${reservationDetails?.seance.heureDebut || "N/A"} - ${reservationDetails?.seance.heureFin || "N/A"}`}</h2>
-            <span>Time</span>
-          </div>
-          <div className="info">
-            <h2>{amount ? `${amount} MAD` : "N/A"}</h2>
-            <span>Price</span>
-          </div>
+      <div className="receipt-card">
+        <h1>CINAZONE</h1>
+        <div className="receipt-info">
+          <h2>Film</h2>
+          <span>{reservationDetails?.seance.film.titre || "N/A"}</span>
         </div>
-        <div className="card cardRight">
-          <div className="eye"></div>
-          <div className="barcode"></div>
+
+        <div className="receipt-info">
+          <h2>Salle</h2>
+          <span>{reservationDetails?.seance.salle.numeroSalle || "N/A"}</span>
+        </div>
+        <div className="receipt-info">
+          <h2>Horaires</h2>
+          <span>
+            {`${reservationDetails?.seance.heureDebut || "N/A"} - ${reservationDetails?.seance.heureFin || "N/A"}`}
+          </span>
+        </div>
+        <div className="receipt-info">
+          <h2>Montant</h2>
+          <span>{amount ? `${amount} MAD` : "N/A"}</span>
         </div>
         <div className="actions">
-          <button onClick={() => navigate(-1)}>Retour</button>
+          <button className="back-button" onClick={() => navigate(-1)}>Retour</button>
           <button onClick={downloadPDF}>Télécharger le Reçu</button>
         </div>
       </div>

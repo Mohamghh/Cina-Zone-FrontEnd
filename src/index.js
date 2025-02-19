@@ -14,6 +14,7 @@ import Seances from "./pages/Seances";
 import Payement from "./pages/Payement";
 import Receipt from "./pages/receipt";
 import { AuthProvider, AuthContext } from "./AuthProvider";
+import Statistiques from "./pages/Statistiques";
 
 
 
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Homepage /> },
       {
+        path: "/Statistiques",
+        element: (
+          <ProtectedRoute roles={["directeur_général"]}>
+            <Statistiques />
+          </ProtectedRoute>
+        ),
+      },
+      {
         path: "/Movies",
         element: (
           //<ProtectedRoute roles={["admin", "client", "client_fidele", "superviseur", "directeur_général"]}>
@@ -57,7 +66,7 @@ const router = createBrowserRouter([
       {
         path: "/AddFilm",
         element: (
-          <ProtectedRoute roles={["admin"]}>
+          <ProtectedRoute roles={["admin","directeur_général"]}>
             <AddFilm />
           </ProtectedRoute>
         ),
@@ -65,7 +74,7 @@ const router = createBrowserRouter([
       {
         path: "/AddSeance",
         element: (
-          <ProtectedRoute roles={["admin"]}>
+          <ProtectedRoute roles={["admin","directeur_général"]}>
             <AddSeance />
           </ProtectedRoute>
         ),
@@ -73,7 +82,7 @@ const router = createBrowserRouter([
       {
         path: "/AddSalle",
         element: (
-          <ProtectedRoute roles={["admin","responsable_salle"]}>
+          <ProtectedRoute roles={["admin","responsable_salle","directeur_général"]}>
             <AddSalle />
           </ProtectedRoute>
         ),
@@ -97,7 +106,7 @@ const router = createBrowserRouter([
       {
         path: "/Receipt",
         element: (
-          <ProtectedRoute roles={["admin", "client", "client_fidele","directeur_général"]}>
+          <ProtectedRoute roles={["admin", "client", "client_fidele","directeur_général","superviseur","responsable_salle"]}>
             <Receipt />
           </ProtectedRoute>
         ),

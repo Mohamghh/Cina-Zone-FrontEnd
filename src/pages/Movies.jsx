@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Navigation from "../components/Navigation";
 import { Link } from 'react-router-dom';
+import { AuthContext } from "../AuthProvider"
 
 const Movies = () => {
   const [films, setFilms] = useState([]); // State to store films
+  const { keycloak, login, register, authenticated } = useContext(AuthContext);
+    const { logout } = useContext(AuthContext);
+    const isClient = keycloak?.hasRealmRole("client");
+    const isAdmin = keycloak?.hasRealmRole("admin");
+    const isSuperviseur = keycloak?.hasRealmRole("superviseur");
+    const isRespoSalle = keycloak?.hasRealmRole("responsable_salle");
+    const username = authenticated ? keycloak.tokenParsed?.preferred_username || "Utilisateur" : null; // Récupère le nom d'utilisateur ou un fallback
 
   useEffect(() => {
     // Fetch films from backend
@@ -20,6 +28,7 @@ const Movies = () => {
     fetchFilms();
   }, []);
   return (
+    
     
     <>
     <>
@@ -81,11 +90,76 @@ const Movies = () => {
                 </ul>
               </div>
               {/* end dropdown */}
-              <a href="signin.html" className="header__sign-in">
-                <i className="ti ti-login" />
-                <span>sign in</span>
-              </a>
-            </div>
+               {/* dropdown */}
+               <div className="header__profile">
+                <a
+                  className="header__sign-in header__sign-in--user"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="ti ti-user" />
+                  <span>
+        {authenticated ? `${username}` : "S'inscrire"}
+      </span>
+                </a>
+                <ul className="dropdown-menu dropdown-menu-end header__dropdown-menu header__dropdown-menu--user">
+
+                {!authenticated && (  
+                <li>
+                <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      login();
+                    }}
+  >
+                    <i className="ti ti-login" />
+                       Login
+                       </a>
+                      </li>
+                      )}
+
+                      {!authenticated && (
+                      <li>
+                      <a
+                         href="#"
+                         onClick={(e) => {
+                         e.preventDefault();
+                           register();
+                          }}
+  >
+                           <i className="ti ti-user" />
+                               Register
+                                </a>
+                          </li>
+                          )}
+                
+                  <li>
+                    <a href="profile.html">
+                      <i className="ti ti-settings" />
+                      Settings
+                    </a>
+                  </li>
+                  {authenticated && (
+                  <li>
+                        <a
+                          href="#"
+                          onClick={(e) => {
+                            e.preventDefault(); // Prevent page reload
+                            logout(); // Call the logout function
+                          }}
+                        >
+                          <i className="ti ti-logout" />
+                          Logout
+                        </a>
+                      </li>
+                       )}
+                </ul>
+              </div>
+              {/* end dropdown */}
+              </div>
             {/* end header auth */}
             {/* header menu btn */}
             <button className="header__btn" type="button">
@@ -102,28 +176,105 @@ const Movies = () => {
   {/* end header */}
   {/* page title */}
   <section className="section section--first">
-    <div className="container">
-      <div className="row">
-        <div className="col-12">
-          <div className="section__wrap">
-            {/* section title */}
-            <h1 className="section__title section__title--head">Films</h1>
-            {/* end section title */}
-            {/* breadcrumbs */}
-            <ul className="breadcrumbs">
-              <li className="breadcrumbs__item">
-                <a href="index.html">Home</a>
-              </li>
-              <li className="breadcrumbs__item breadcrumbs__item--active">
-                Films
-              </li>
-            </ul>
-            {/* end breadcrumbs */}
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <div className="section__wrap">
+            <div>
+  <style>
+    {`
+      .section__title {
+        margin-bottom: 10px; /* Espace entre le titre et les breadcrumbs */
+        text-align: left; /* Aligne le titre à gauche */
+        font-size: 24px; /* Taille du titre */
+        font-weight: bold;
+      }
+
+      .breadcrumbs {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        text-align: left; /* Aligne les breadcrumbs à gauche */
+        font-size: 14px; /* Taille du texte des breadcrumbs */
+        color: #555; /* Couleur par défaut des breadcrumbs */
+      }
+
+      .breadcrumbs__item {
+        display: inline; /* Affiche les éléments en ligne */
+      }
+
+      .breadcrumbs__item a {
+        text-decoration: none; /* Enlève le soulignement des liens */
+        color: orange; /* Couleur pour "Home" */
+        font-weight: bold; /* Met "Home" en gras */
+      }
+
+      .breadcrumbs__item a:hover {
+        text-decoration: underline; /* Soulignement au survol */
+      }
+
+      .breadcrumbs__item--active {
+        color: #555; /* Couleur de l'élément actif */
+        font-weight: bold; /* Met l'élément actif en gras */
+      }
+
+      .breadcrumbs__separator {
+        margin: 0 5px; /* Espace autour du séparateur */
+        color: #555; /* Couleur du séparateur */
+      }
+    `}
+  </style>
+
+  {/* section title */}
+  <h1 className="section__title section__title--head">Films</h1>
+  {/* breadcrumbs */}
+  <ul className="breadcrumbs">
+    <li className="breadcrumbs__item">
+      <Link to="/">Home</Link> 
+    </li>
+    <span className="breadcrumbs__separator"></span>
+    <li className="breadcrumbs__item breadcrumbs__item--active">Films</li>
+  </ul>
+  {/* end breadcrumbs */}
+</div>
+              {/* Add Film Button */}
+              <div style={{ marginTop: "10px" }}>
+                <Link
+                  to="/AddFilm"
+                  style={{
+                    textDecoration: "none",
+                  }}
+                >
+                   <>
+                   <>
+      {authenticated && !isClient && !isRespoSalle && !isSuperviseur &&(
+        // Le bouton est également visible si l'utilisateur a le rôle "admin"
+        (isAdmin || !isClient) && (
+          <button
+            style={{
+              backgroundColor: "orange",
+              color: "white",
+              border: "none",
+              padding: "10px 20px",
+              fontSize: "16px",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            Ajouter Film
+          </button>
+        )
+      )}
+    </>
+    </>
+                </Link>
+              </div>
+              {/* end Add Film Button */}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   {/* end page title */}
   {/* fixed filter wrap */}
   <div>
@@ -132,38 +283,7 @@ const Movies = () => {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            <div className="filter__content">
-              {/* menu btn */}
-              <button className="filter__menu" type="button">
-                <i className="ti ti-filter" />
-                Filter
-              </button>
-              {/* end menu btn */}
-              {/* filter desk */}
-              <div className="filter__items">
-                <select
-                  className="filter__select"
-                  name="genre"
-                  id="filter__genre"
-                ><option value={0}>All genres</option>
-                <option value={1}>Action/Adventure</option>
-                <option value={2}>Horror</option>
-                <option value={3}>Science Fiction</option>
-                <option value={4}>Biography</option>
-                <option value={5}>Comedy</option>
-                <option value={6}>Thriller</option>
-                <option value={7}>Dance</option>
-                <option value={8}>Documentary</option>
-                <option value={9}>Drama</option>
-                </select>
-              </div>
-              {/* end filter desk */}
-              {/* filter btn */}
-              {/* end filter btn */}
-              {/* amount */}
-              <span className="filter__amount">Showing 18 of 1713</span>
-              {/* end amount */}
-            </div>
+            
           </div>
         </div>
       </div>
